@@ -18,4 +18,9 @@
       </None>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\PresenceMonitor.Messaging.Mqtt\PresenceMonitor.Messaging.Mqtt.csproj" />
+      <ProjectReference Include="..\PresenceMonitor.Worker\PresenceMonitor.Worker.csproj" />
+    </ItemGroup>
+
 </Project>

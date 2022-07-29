@@ -1,8 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Modules;
+using PresenceMonitor.Modules;
 
-namespace Extensions;
+namespace PresenceMonitor.Extensions;
 
 public static class HostBuilderExtensions
 {

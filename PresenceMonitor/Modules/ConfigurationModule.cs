@@ -1,8 +1,8 @@
-using Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PresenceMonitor.Configuration;
 
-namespace Modules;
+namespace PresenceMonitor.Modules;
 
 public static class ConfigurationModule
 {

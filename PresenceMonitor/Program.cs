@@ -1,14 +1,9 @@
-﻿using Extensions;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Hosting;
+using PresenceMonitor.Extensions;
 
 var host = Host.CreateDefaultBuilder(args)
     .UseContentRoot(AppContext.BaseDirectory)
     .ConfigureIocModules()
     .Build();
 
-await host.HostAsync(provider =>
-{
-    var application = provider.GetRequiredService<Application>();
-    return application.RunAsync(args);
-});
+await host.HostAsync();

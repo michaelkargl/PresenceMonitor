@@ -1,27 +1,19 @@
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
-namespace Extensions;
+namespace PresenceMonitor.Extensions;
 
 public static class HostExtensions
 {
-    /// <summary>
-    /// Host the specified <paramref name="hostFunctionAsync"/>. 
-    /// </summary>
-    /// <param name="host">The target host to run the function in.</param>
-    /// <param name="hostFunctionAsync">An asynchronous function to host. In most cases, this runs the main execution loop.</param>
-    public static async Task HostAsync(
-        this IHost host,
-        Func<IServiceProvider, Task> hostFunctionAsync
-    )
+    public static async Task HostAsync(this IHost host)
     {
-        try
-        {
-            await host.StartAsync();
-            await hostFunctionAsync(host.Services);
-        }
-        finally
-        {
-            await host.StopAsync();
-        }
+        var logger = host.Services.GetRequiredService<ILogger<IHost>>();
+        
+        logger.LogDebug("Starting host...");
+        logger.LogDebug("Running application...");
+        await host.RunAsync();
+        
+        logger.LogDebug("Application stopped");
     }
 }
