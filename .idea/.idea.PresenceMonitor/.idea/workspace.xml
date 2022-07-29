@@ -7,20 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="35d3761c-cf3a-4728-bd12-22178297dd1a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/PresenceMonitor.Messaging.Abstractions/IMessageSubscriber.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PresenceMonitor/Modules/MessagingModule.cs" afterDir="false" />
+    <list default="true" id="35d3761c-cf3a-4728-bd12-22178297dd1a" name="Changes" comment="feat: removes unnecessary Application.cs&#10;  - simplifies code and makes application cancellation easier">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PresenceMonitor/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PresenceMonitor/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PresenceMonitor.sln" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PresenceMonitor/Application.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PresenceMonitor/Configuration/MqttOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor/Configuration/MqttOptions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PresenceMonitor/Extensions/HostBuilderExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor/Extensions/HostBuilderExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PresenceMonitor/Extensions/HostExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor/Extensions/HostExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PresenceMonitor/Modules/ApplicationModule.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PresenceMonitor/Modules/ConfigurationModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor/Modules/ConfigurationModule.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PresenceMonitor/Modules/RootModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor/Modules/RootModule.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PresenceMonitor/PresenceMonitor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor/PresenceMonitor.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PresenceMonitor/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor/Configuration/MqttOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.Messaging.Abstractions/Configuration/MqttOptions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor/Modules/MessagingModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor/Modules/MessagingModule.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PresenceMonitor/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor/appsettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +22,21 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/44fe584509194d39a35c7f3665e45a179ec200/b4/70b65da5/Action`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/72fe8e4bbb8049bc81769ed531e7d8b447a00/fa/dc694eab/MqttFactory.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/15e12e21a29424ca81ccf4c6118f3d1ac33392e64e4033ad9ffdca0c6d6f3/IMqttClientChannelOptions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/196025aa1689706ff18d265bb1361625a510a3ef5b725e8205d268df43918c6/MqttClientTlsOptions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/cce6d95d9d2713e38c8f47b93b670245b9ba36bb3fc51b4b77ef1aba1643cd/IMqttClient.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ce287049b73ee155cb52efd2939a383edcfc8b1916e47348a72c244d3b41/MqttClientOptionsBuilder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d8a081278aeefba3e76b6b47941a10fe76d9c11379c88f76b1938b33d8666/Exception.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/fd3650207558a9a157597ed2118dcef6fa49d117fbd4b5711208ae26b39ad2a/MqttClientOptions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/fd56b4588aa22c753590a7b32d84a3deeed7a8e5074fa55db714995efaea/ArgumentNullException.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Configuration/MqttOptions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Extensions/HostBuilderExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Extensions/HostExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Modules/ConfigurationModule.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Modules/RootModule.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Program.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -110,8 +114,16 @@
       <option name="presentableId" value="Default" />
       <updated>1659041194402</updated>
       <workItem from="1659041207720" duration="5345000" />
-      <workItem from="1659099819079" duration="3046000" />
+      <workItem from="1659099819079" duration="6296000" />
     </task>
+    <task id="LOCAL-00001" summary="feat: removes unnecessary Application.cs&#10;  - simplifies code and makes application cancellation easier">
+      <created>1659103149601</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1659103149601</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -132,5 +144,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="feat: removes unnecessary Application.cs&#10;  - simplifies code and makes application cancellation easier" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: removes unnecessary Application.cs&#10;  - simplifies code and makes application cancellation easier" />
   </component>
 </project>
