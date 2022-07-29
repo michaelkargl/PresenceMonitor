@@ -29,14 +29,14 @@ public class MqttMessageSubscriber : IMessageSubscriber
     private IMqttClient MqttClient => this._mqttClient.Value;
 
     public async Task SubscribeAsync(
-        Func<string, Task> messageHandlerAsync,
+        Func<string, CancellationToken, Task> messageHandlerAsync,
         CancellationToken cancellationToken
     )
     {
         Task HandleApplicationMessageReceivedAsync(MqttApplicationMessageReceivedEventArgs mqttMessageReceivedEventArgs)
         {
             var message = Encoding.UTF8.GetString(mqttMessageReceivedEventArgs.ApplicationMessage.Payload);
-            return messageHandlerAsync.Invoke(message);
+            return messageHandlerAsync.Invoke(message, cancellationToken);
         }
 
         this.MqttClient.ApplicationMessageReceivedAsync += HandleApplicationMessageReceivedAsync;

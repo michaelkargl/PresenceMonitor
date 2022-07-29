@@ -9,5 +9,6 @@ public static class RootModule
     {
         ConfigurationModule.Configure(serviceCollection, configuration);
         MessagingModule.Configure(serviceCollection, configuration);
+        UseCasesModule.Configure(serviceCollection);
     }
 }
