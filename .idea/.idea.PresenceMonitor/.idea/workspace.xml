@@ -8,10 +8,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="35d3761c-cf3a-4728-bd12-22178297dd1a" name="Changes" comment="feat: triggers ProcessMessageCommand on message receipt instead of handling business logic in the worker">
-      <change afterPath="$PROJECT_DIR$/PresenceMonitor.Worker.Test.Integration/PresenceMonitor.Worker.Test.Integration.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PresenceMonitor.Worker.Test.Integration/Subscriber/PassThruMessageSubscriber.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PresenceMonitor/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PresenceMonitor/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PresenceMonitor.sln" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor.Messaging.Abstractions/Configuration/MqttOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.Messaging.Abstractions/Configuration/MqttOptions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor.Messaging.Mqtt/MqttMessageSubscriber.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.Messaging.Mqtt/MqttMessageSubscriber.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor.UseCases.Abstractions/PresenceMonitor.UseCases.Abstractions.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.UseCases.Abstractions/PresenceMonitor.UseCases.Abstractions.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor.UseCases/PresenceMonitor.UseCases.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.UseCases/PresenceMonitor.UseCases.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor/Modules/ConfigurationModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor/Modules/ConfigurationModule.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +29,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d8a081278aeefba3e76b6b47941a10fe76d9c11379c88f76b1938b33d8666/Exception.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PresenceMonitor.UseCases.Abstraction/UnitTest1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor.Worker.Test.Integration/WorkerTests.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PresenceMonitor.Worker.Test.Integration/WorkerTests.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -103,7 +109,7 @@
       <updated>1659041194402</updated>
       <workItem from="1659041207720" duration="5345000" />
       <workItem from="1659099819079" duration="7053000" />
-      <workItem from="1659113412936" duration="5141000" />
+      <workItem from="1659113412936" duration="10327000" />
     </task>
     <task id="LOCAL-00001" summary="feat: removes unnecessary Application.cs&#10;  - simplifies code and makes application cancellation easier">
       <created>1659103149601</created>
@@ -126,11 +132,47 @@
       <option name="project" value="LOCAL" />
       <updated>1659116289371</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="feat: triggers ProcessMessageCommand on message receipt instead of handling business logic in the worker">
+      <created>1659118669068</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1659118669068</updated>
+    </task>
+    <task id="LOCAL-00005" summary="feat: triggers ProcessMessageCommand on message receipt instead of handling business logic in the worker">
+      <created>1659118755350</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1659118755350</updated>
+    </task>
+    <task id="LOCAL-00006" summary="feat: triggers ProcessMessageCommand on message receipt instead of handling business logic in the worker">
+      <created>1659118815078</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1659118815078</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnitTestsCoverage.Settings">
+    <option name="coveragePercentColumnWidth" value="150" />
+    <option name="sortOrder" value="DESCENDING" />
+    <option name="sortedColumn" value="1" />
+    <option name="symbolColumnWidth" value="293" />
+    <coverage-tree-state>
+      <expand>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 37% 69/110" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+      </expand>
+      <select />
+    </coverage-tree-state>
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
