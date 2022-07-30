@@ -101,14 +101,17 @@ build:
 
 tests:
   stage: test
-  # ### Run the tests
-  #
-  # You can either run tests for all test projects that are defined in your solution
-  # with 'dotnet test' or run tests only for specific project by specifying
-  # a relative path to the directory where it is located (e.g. 'dotnet test ./test/UnitTests').
-  #
-  # You may want to define separate testing jobs for different types of testing
-  # (e.g. integration tests, unit tests etc).
   script:
-    - 'dotnet test --no-restore'
-
+    - 'echo "NUGET_PACKAGES_DIRECTORY: $NUGET_PACKAGES_DIRECTORY"'
+    - 'echo "CI_PROJECT_DIR: $CI_PROJECT_DIR"'
+    - 'dotnet test --no-restore /p:CollectCoverage=true /p:CoverletOutput="coverage" /p:CoverletOutputFormat="cobertura" /p:ExcludeByAttribute=CompilerGeneratedAttribute'
+    - 'dotnet tool install --tool-path dotnet-tools dotnet-reportgenerator-globaltool'
+    - 'dotnet-tools/reportgenerator "-reports:*/coverage.cobertura.xml" "-targetdir:public/coverage" "-reporttypes:html;cobertura"'
+  artifacts:
+    paths:
+      - public
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: public/coverage/Cobertura.xml
+    
