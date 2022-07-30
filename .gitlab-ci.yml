@@ -108,19 +108,22 @@ tests:
     - 'dotnet test --test-adapter-path:. --logger:"junit;LogFilePath=..\artifacts\{assembly}-test-result.xml;MethodFormat=Class;FailureBodyFormat=Verbose" --no-restore /p:CollectCoverage=true /p:CoverletOutput="coverage" /p:CoverletOutputFormat="cobertura" /p:ExcludeByAttribute=CompilerGeneratedAttribute'
     # merge and analyze generated coverage information using a report generator
     - 'dotnet tool install --tool-path dotnet-tools dotnet-reportgenerator-globaltool'
-    - 'dotnet-tools/reportgenerator "-reports:*/coverage.cobertura.xml" "-targetdir:public/coverage" "-reporttypes:html;cobertura;TextSummary"'
-    # prints text summary to make gitlab coverage parsing easier
-    - cat public/coverage/Summary.txt
+    - 'dotnet-tools/reportgenerator "-reports:*/coverage.cobertura.xml" "-targetdir:public/coverage/text" "-reporttypes:cobertura;TextSummary"'
+    - 'dotnet-tools/reportgenerator "-reports:*/coverage.cobertura.xml" "-targetdir:public/coverage/html" "-reporttypes:HtmlInline_AzurePipelines_Dark"'
+    # referencing gitlab build artifacts is buggy at the moment and results in 4xx and 5xx errors
+    # - 'dotnet-tools/reportgenerator "-reports:*/coverage.cobertura.xml" "-targetdir:public/coverage/badges" "-reporttypes:Badges"'
+    # prints text summary for gitlab coverage parser
+    - cat public/coverage/text/Summary.txt
   coverage: '/Line coverage: \d+\.\d+\%/'
 
   artifacts:
     paths:
-    - public
+    - public/coverage
     - ./**/*test-result.xml
     reports:
       junit:
         - ./**/*test-result.xml
       coverage_report:
         coverage_format: cobertura
-        path: public/coverage/Cobertura.xml
+        path: public/coverage/text/Cobertura.xml
     
