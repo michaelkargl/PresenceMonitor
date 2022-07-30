@@ -8,12 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="35d3761c-cf3a-4728-bd12-22178297dd1a" name="Changes" comment="fix: adjusts Dockerfile entrypoint to run the app directly using dotnet">
-      <change afterPath="$PROJECT_DIR$/PresenceMonitor.UseCases.Tests.Integration/PresenceMonitor.UseCases.Tests.Integration.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PresenceMonitor/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PresenceMonitor/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PresenceMonitor.Worker.Test.Integration/PresenceMonitor.Worker.Test.Integration.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.Worker.Test.Integration/PresenceMonitor.Worker.Test.Integration.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PresenceMonitor.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.sln.DotSettings.user" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,9 +21,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d8a081278aeefba3e76b6b47941a10fe76d9c11379c88f76b1938b33d8666/Exception.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/.nuget/packages/microsoft.net.test.sdk/17.2.0/build/netcoreapp2.1/Microsoft.NET.Test.Sdk.Program.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PresenceMonitor.Tests.Integration/UnitTest1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PresenceMonitor.UseCases.Abstraction/UnitTest1.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PresenceMonitor.UseCases.Tests.Integration/UnitTest1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PresenceMonitor.Worker.Test.Integration/WorkerTests.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">

@@ -104,13 +104,16 @@ tests:
   script:
     - 'echo "NUGET_PACKAGES_DIRECTORY: $NUGET_PACKAGES_DIRECTORY"'
     - 'echo "CI_PROJECT_DIR: $CI_PROJECT_DIR"'
-    - 'dotnet test --no-restore /p:CollectCoverage=true /p:CoverletOutput="coverage" /p:CoverletOutputFormat="cobertura" /p:ExcludeByAttribute=CompilerGeneratedAttribute'
+    - 'dotnet test --test-adapter-path:. --logger:"junit;LogFilePath=..\artifacts\{assembly}-test-result.xml;MethodFormat=Class;FailureBodyFormat=Verbose" --no-restore /p:CollectCoverage=true /p:CoverletOutput="coverage" /p:CoverletOutputFormat="cobertura" /p:ExcludeByAttribute=CompilerGeneratedAttribute'
     - 'dotnet tool install --tool-path dotnet-tools dotnet-reportgenerator-globaltool'
     - 'dotnet-tools/reportgenerator "-reports:*/coverage.cobertura.xml" "-targetdir:public/coverage" "-reporttypes:html;cobertura"'
   artifacts:
     paths:
-      - public
+    - public
+    - ./**/*test-result.xml
     reports:
+      junit:
+        - ./**/*test-result.xml
       coverage_report:
         coverage_format: cobertura
         path: public/coverage/Cobertura.xml
