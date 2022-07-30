@@ -9,14 +9,8 @@
   <component name="ChangeListManager">
     <list default="true" id="35d3761c-cf3a-4728-bd12-22178297dd1a" name="Changes" comment="feat: triggers ProcessMessageCommand on message receipt instead of handling business logic in the worker">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PresenceMonitor/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PresenceMonitor/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PresenceMonitor.Messaging.Abstractions/Configuration/MqttOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.Messaging.Abstractions/Configuration/MqttOptions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PresenceMonitor.Messaging.Mqtt/MqttMessageSubscriber.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.Messaging.Mqtt/MqttMessageSubscriber.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PresenceMonitor.UseCases.Abstractions/PresenceMonitor.UseCases.Abstractions.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.UseCases.Abstractions/PresenceMonitor.UseCases.Abstractions.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PresenceMonitor.UseCases/PresenceMonitor.UseCases.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.UseCases/PresenceMonitor.UseCases.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PresenceMonitor.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PresenceMonitor/Modules/ConfigurationModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor/Modules/ConfigurationModule.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PresenceMonitor/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/run.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +22,8 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d8a081278aeefba3e76b6b47941a10fe76d9c11379c88f76b1938b33d8666/Exception.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/.nuget/packages/microsoft.net.test.sdk/17.2.0/build/netcoreapp2.1/Microsoft.NET.Test.Sdk.Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PresenceMonitor.UseCases.Abstraction/UnitTest1.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor.Worker.Test.Integration/WorkerTests.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PresenceMonitor.Worker.Test.Integration/WorkerTests.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -110,6 +104,7 @@
       <workItem from="1659041207720" duration="5345000" />
       <workItem from="1659099819079" duration="7053000" />
       <workItem from="1659113412936" duration="10327000" />
+      <workItem from="1659187148992" duration="2058000" />
     </task>
     <task id="LOCAL-00001" summary="feat: removes unnecessary Application.cs&#10;  - simplifies code and makes application cancellation easier">
       <created>1659103149601</created>

@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:latest AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 WORKDIR /app
 
 # Copy everything
@@ -11,7 +11,7 @@ RUN dotnet publish --configuration Release --output out
 ## ---
 
 # Build runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:6.0
+FROM mcr.microsoft.com/dotnet/sdk:6.0
 WORKDIR /app
 
 COPY --from=build-env /app/out .
@@ -21,4 +21,4 @@ COPY --from=build-env /app/out .
 ENV DOTNET_EnableDiagnostics=0
 ENV DOTNET_CLI_TELEMETRY_OPTOUT=1
 
-ENTRYPOINT [ "./run.sh" ]
+ENTRYPOINT [ "dotnet", "PresenceMonitor.dll" ]
