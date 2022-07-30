@@ -104,9 +104,15 @@ tests:
   script:
     - 'echo "NUGET_PACKAGES_DIRECTORY: $NUGET_PACKAGES_DIRECTORY"'
     - 'echo "CI_PROJECT_DIR: $CI_PROJECT_DIR"'
+    # test application and writes test result and code coverage reports to disk
     - 'dotnet test --test-adapter-path:. --logger:"junit;LogFilePath=..\artifacts\{assembly}-test-result.xml;MethodFormat=Class;FailureBodyFormat=Verbose" --no-restore /p:CollectCoverage=true /p:CoverletOutput="coverage" /p:CoverletOutputFormat="cobertura" /p:ExcludeByAttribute=CompilerGeneratedAttribute'
+    # merge and analyze generated coverage information using a report generator
     - 'dotnet tool install --tool-path dotnet-tools dotnet-reportgenerator-globaltool'
-    - 'dotnet-tools/reportgenerator "-reports:*/coverage.cobertura.xml" "-targetdir:public/coverage" "-reporttypes:html;cobertura"'
+    - 'dotnet-tools/reportgenerator "-reports:*/coverage.cobertura.xml" "-targetdir:public/coverage" "-reporttypes:html;cobertura;TextSummary"'
+    # prints text summary to make gitlab coverage parsing easier
+    - cat public/coverage/Summary.txt
+  coverage: '/Line coverage: \d+\.\d+\%/'
+
   artifacts:
     paths:
     - public
