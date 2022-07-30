@@ -1,0 +1,15 @@
+version: "3.9"
+
+networks:
+  presence-bot-net:
+    driver: bridge
+
+services:
+  presence-monitor:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: presence-monitor:latest
+    restart: always
+    networks:
+      - presence-bot-net
