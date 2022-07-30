@@ -3,8 +3,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MQTTnet;
 using MQTTnet.Client;
-using PresenceMonitor.Configuration;
 using PresenceMonitor.Messaging.Abstractions;
+using PresenceMonitor.Messaging.Abstractions.Configuration;
 
 namespace PresenceMonitor.Messaging.Mqtt;
 

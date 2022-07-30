@@ -1,4 +1,4 @@
-namespace PresenceMonitor.Configuration;
+namespace PresenceMonitor.Messaging.Abstractions.Configuration;
 
 public class MqttOptions
 {
