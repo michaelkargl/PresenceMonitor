@@ -5,11 +5,15 @@ networks:
     driver: bridge
 
 services:
-  presence-monitor:
+  presence-monitor-dotnet:
     build:
       context: ./
       dockerfile: Dockerfile
-    image: presence-monitor:latest
+    image: presence-monitor-dotnet:latest
     restart: always
+    environment:
+      - MqttOptions__Url=test.mosquitto.org
+      - MqttOptions__Topic=+/time
+      - mqttOptions__Port=1883
     networks:
       - presence-bot-net
