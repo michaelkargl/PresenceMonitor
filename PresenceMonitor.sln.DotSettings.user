@@ -2,7 +2,7 @@
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;
   &lt;Assembly Path="/home/kami/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.0/lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll" /&gt;
 &lt;/AssemblyExplorer&gt;</s:String>
-	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">/home/kami/.cache/JetBrains/Rider2022.1/resharper-host/temp/Rider/vAny/CoverageData/_PresenceMonitor.1837766369/Snapshot/snapshot.utdcvr</s:String>
+	
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f8bcb626_002Defc5_002D480f_002D8b70_002Df0c1084937e1/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Test1" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;ProjectFile&gt;9A2E97C7-E68D-4EEB-A9DE-58570C7BE4E5/f:WorkerTests.cs&lt;/ProjectFile&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

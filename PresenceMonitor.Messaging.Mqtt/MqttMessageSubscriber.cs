@@ -27,7 +27,7 @@ public class MqttMessageSubscriber : IMessageSubscriber
 
     private MqttOptions MqttOptions => this._mqttOptions.Value;
     private IMqttClient MqttClient => this._mqttClient.Value;
-
+    
     public async Task SubscribeAsync(
         Func<string, CancellationToken, Task> messageHandlerAsync,
         CancellationToken cancellationToken
@@ -40,11 +40,11 @@ public class MqttMessageSubscriber : IMessageSubscriber
         }
 
         this.MqttClient.ApplicationMessageReceivedAsync += HandleApplicationMessageReceivedAsync;
-
-        await this.ConnectAsync(cancellationToken, this.MqttOptions.Url);
+        
+        await this.ConnectAsync(cancellationToken, this.MqttOptions.Uri);
         await this.SubscribeAsync(cancellationToken, this.MqttOptions.Topic);
     }
-
+    
     private Task SubscribeAsync(CancellationToken cancellationToken, string topic)
     {
         var subscriptionOptions = new MqttFactory()
@@ -54,14 +54,14 @@ public class MqttMessageSubscriber : IMessageSubscriber
 
         return this.MqttClient.SubscribeAsync(subscriptionOptions, cancellationToken);
     }
-
-    private async Task ConnectAsync(CancellationToken cancellationToken, string url)
+    
+    private async Task ConnectAsync(CancellationToken cancellationToken, Uri uri)
     {
         var mqttOptions = new MqttClientOptionsBuilder()
-            .WithTcpServer(url)
+            .WithTcpServer(uri.Host, uri.Port)
             .Build();
 
-        this._logger.LogDebug("Connecting to MQTT server: {ServerUrl}", url);
+        this._logger.LogDebug("Connecting to MQTT server: {ServerUrl}", uri);
         await this.MqttClient.ConnectAsync(mqttOptions, cancellationToken);
     }
 }

@@ -7,8 +7,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="35d3761c-cf3a-4728-bd12-22178297dd1a" name="Changes" comment="fix: adjusts Dockerfile entrypoint to run the app directly using dotnet">
-      <change beforePath="$PROJECT_DIR$/PresenceMonitor.Worker.Test.Integration/PresenceMonitor.Worker.Test.Integration.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.Worker.Test.Integration/PresenceMonitor.Worker.Test.Integration.csproj" afterDir="false" />
+    <list default="true" id="35d3761c-cf3a-4728-bd12-22178297dd1a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PresenceMonitor/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PresenceMonitor/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor.Messaging.Abstractions/Configuration/MqttOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.Messaging.Abstractions/Configuration/MqttOptions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor.Messaging.Mqtt/MqttMessageSubscriber.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.Messaging.Mqtt/MqttMessageSubscriber.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor/appsettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +23,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/72fe8e4bbb8049bc81769ed531e7d8b447a00/fa/dc694eab/MqttFactory.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d8a081278aeefba3e76b6b47941a10fe76d9c11379c88f76b1938b33d8666/Exception.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/.nuget/packages/microsoft.net.test.sdk/17.2.0/build/netcoreapp2.1/Microsoft.NET.Test.Sdk.Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PresenceMonitor.UseCases.Abstraction/UnitTest1.cs" root0="SKIP_HIGHLIGHTING" />
@@ -38,7 +43,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.36857706&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor.Worker.Test.Integration/WorkerTests.cs&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/kami/workspace/zube-space/presence-api&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -103,6 +108,9 @@
       <workItem from="1659099819079" duration="7053000" />
       <workItem from="1659113412936" duration="10327000" />
       <workItem from="1659187148992" duration="6209000" />
+      <workItem from="1659262792069" duration="316000" />
+      <workItem from="1663312187294" duration="2157000" />
+      <workItem from="1663314859405" duration="818000" />
     </task>
     <task id="LOCAL-00001" summary="feat: removes unnecessary Application.cs&#10;  - simplifies code and makes application cancellation easier">
       <created>1659103149601</created>
@@ -160,15 +168,51 @@
     <option name="version" value="3" />
   </component>
   <component name="UnitTestsCoverage.Settings">
-    <option name="coveragePercentColumnWidth" value="150" />
+    <option name="coveragePercentColumnWidth" value="146" />
     <option name="sortOrder" value="DESCENDING" />
     <option name="sortedColumn" value="1" />
-    <option name="symbolColumnWidth" value="316" />
+    <option name="symbolColumnWidth" value="307" />
     <coverage-tree-state>
       <expand>
         <path>
           <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
-          <item name="Total 37% 52/83" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Total 0% 83/83" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 0% 83/83" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="PresenceMonitor.Messaging.Abstractions 0% 4/4" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 0% 83/83" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="PresenceMonitor.Messaging.Abstractions 0% 4/4" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="PresenceMonitor.Messaging.Abstractions.Configuration 0% 4/4" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 0% 83/83" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="PresenceMonitor.Messaging.Abstractions 0% 4/4" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="PresenceMonitor.Messaging.Abstractions.Configuration 0% 4/4" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="MqttOptions 0% 4/4" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 0% 83/83" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="PresenceMonitor.UseCases 0% 5/5" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 0% 83/83" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="PresenceMonitor.UseCases 0% 5/5" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="PresenceMonitor.UseCases 0% 5/5" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 0% 83/83" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="PresenceMonitor.UseCases 0% 5/5" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="PresenceMonitor.UseCases 0% 5/5" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="ProcessMessageCommandHandler 0% 5/5" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
         </path>
       </expand>
       <select />
