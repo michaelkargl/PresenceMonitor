@@ -7,12 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\PresenceMonitor.UseCases.Abstractions\PresenceMonitor.UseCases.Abstractions.csproj" />
+      <PackageReference Include="MediatR" Version="10.0.1" />
+      <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="MediatR" Version="10.0.1" />
-      <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
+      <ProjectReference Include="..\PresenceMonitor.UseCases.Abstractions\PresenceMonitor.UseCases.Abstractions.csproj" />
     </ItemGroup>
 
 </Project>

@@ -1,5 +1,3 @@
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using PresenceMonitor.Messaging.Abstractions.Configuration;
 
 namespace PresenceMonitor.Modules;

@@ -12,7 +12,7 @@ public class ProcessMessageCommandHandler : AsyncRequestHandler<ProcessMessageCo
     {
         this._logger = logger;
     }
-    
+
     protected override Task Handle(ProcessMessageCommand request, CancellationToken cancellationToken)
     {
         this._logger.LogInformation("Received message: {Message}", request.Message);

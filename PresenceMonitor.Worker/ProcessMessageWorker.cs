@@ -29,14 +29,12 @@ public class ProcessMessageWorker : BackgroundService
         this._logger.LogInformation("Subscribing to messages...");
         await this._messageSubscriber.SubscribeAsync(this.HandleMessageReceivedAsync, stoppingToken);
     }
-    
+
     private async Task HandleMessageReceivedAsync(string message, CancellationToken cancellationToken)
     {
         await using var scope = this._serviceProvider.CreateAsyncScope();
         var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
-            
+
         await mediator.Send(new ProcessMessageCommand(message), cancellationToken);
     }
-
-    
 }
