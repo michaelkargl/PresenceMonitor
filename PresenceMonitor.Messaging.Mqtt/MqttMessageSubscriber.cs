@@ -10,9 +10,9 @@ namespace PresenceMonitor.Messaging.Mqtt;
 
 public class MqttMessageSubscriber : IMessageSubscriber
 {
-    private readonly Lazy<IMqttClient> _mqttClient;
     private readonly ILogger<MqttMessageSubscriber> _logger;
     private readonly IOptions<MqttOptions> _mqttOptions;
+    private readonly Lazy<IMqttClient> _mqttClient;
 
     public MqttMessageSubscriber(
         Lazy<IMqttClient> mqttClient,
@@ -38,7 +38,7 @@ public class MqttMessageSubscriber : IMessageSubscriber
             var message = Encoding.UTF8.GetString(mqttMessageReceivedEventArgs.ApplicationMessage.Payload);
             return messageHandlerAsync.Invoke(message, cancellationToken);
         }
-
+        
         this.MqttClient.ApplicationMessageReceivedAsync += HandleApplicationMessageReceivedAsync;
         
         await this.ConnectAsync(cancellationToken, this.MqttOptions.Uri);
@@ -51,7 +51,7 @@ public class MqttMessageSubscriber : IMessageSubscriber
             .CreateSubscribeOptionsBuilder()
             .WithTopicFilter(topic)
             .Build();
-
+    
         return this.MqttClient.SubscribeAsync(subscriptionOptions, cancellationToken);
     }
     
@@ -60,7 +60,7 @@ public class MqttMessageSubscriber : IMessageSubscriber
         var mqttOptions = new MqttClientOptionsBuilder()
             .WithTcpServer(uri.Host, uri.Port)
             .Build();
-
+    
         this._logger.LogDebug("Connecting to MQTT server: {ServerUrl}", uri);
         await this.MqttClient.ConnectAsync(mqttOptions, cancellationToken);
     }

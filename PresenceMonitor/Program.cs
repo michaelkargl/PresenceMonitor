@@ -1,4 +1,3 @@
-﻿using Microsoft.Extensions.Hosting;
 using PresenceMonitor.Extensions;
 
 var host = Host.CreateDefaultBuilder(args)
