@@ -13,6 +13,33 @@ Docker:
 - Docker version 20.10.17
 - Docker Compose version v2.6.0
 
+## Architecture
+
+| Actor            | Description                                                                   |
+| ---------------- | ----------------------------------------------------------------------------- |
+| Presence Monitor | Monitors and publishes presence data asynchronously into the presence system. |
+| Presence Broker  | Message broker for asynchronous messaging (MQTT, RabbitMQ)                    |
+| Presence API     | Provides an interface for polling presence data.                              |
+
+### Main Use Case
+
+The `presence-monitor` service periodically checks the `presence-api` for new data
+and publishes a new event to the `presence-monitor` so that services can respond
+to the new data change.
+
+```plantuml
+@startuml
+monitor -> api: /presence
+api --> monitor: 204 NoContent
+monitor -> api: /presence
+api --> monitor: 200 {v:42}
+monitor -> broker: publish {v:42}
+@enduml
+```
+
+### System Context
+
+![system context diagram of the presence monitor. This diagram can be modified using https://excalidraw.com](./images/systemcontext.excallidraw.svg)
 
 ## Configuration
 
@@ -49,6 +76,7 @@ dotnet test
 ```sh
 docker compose up
 ```
+
 ## License
 
 See [LICENSE](./LICENSE) in repository root
