@@ -21,9 +21,10 @@ public class MonitoringWorkerTest : IAsyncLifetime
 
         this._worker = new MonitorPresenceWorker(
             this._serviceCollection,
-            new Mock<IOptions<MonitorPresenceWorkerOptions>>().Object,
+            MockMonitorPresenceWorkerOptions(TimeSpan.FromMilliseconds(10)).Object,
             new NullLogger<MonitorPresenceWorker>());
     }
+
 
     public Task InitializeAsync() => Task.CompletedTask;
     public async Task DisposeAsync() => await this._serviceCollection.DisposeAsync();
@@ -31,26 +32,46 @@ public class MonitoringWorkerTest : IAsyncLifetime
     [Fact]
     public async Task ExecuteOnceAsync_OnSuccess_CallsCommand()
     {
-        await this._worker.ExecuteOnceAsync(this._mediatorMock.Object, CancellationToken.None);
-        this.AssertCommandCalled<MonitorPresenceCommand>(Times.Once());
+        try
+        {
+            await this.RunWorkerUntil(TimeSpan.FromMilliseconds(100));
+        }
+        catch (OperationCanceledException)
+        {
+        }
+
+        this.AssertCommandCalledAtLeastOnce<MonitorPresenceCommand>();
     }
 
+
     [Fact]
-    public async Task ExecuteOnceAsync_OnException_Throws()
+    public async Task ExecuteAsync_OnException_Throws()
     {
-        var exception = new MonitorPresenceException("Expected test exception");
-        var expectedMessage = MonitorPresenceException.BuildMessage(exception.Reason);
+        var exception = new Exception("Expected test exception");
+        var expectedMessage = MonitorPresenceException.BuildMessage(exception.Message);
         this.SetThrowingCommandInvocation<MonitorPresenceCommand>(exception);
 
         var actualException = await Assert.ThrowsAsync<MonitorPresenceException>(() =>
-            this._worker.ExecuteOnceAsync(this._mediatorMock.Object, CancellationToken.None)
+            this.RunWorkerUntil(TimeSpan.FromSeconds(1))
         );
 
-        actualException?.Message.Should().NotBeNull();
+        actualException.Message.Should().NotBeNull();
         actualException!.Message.Should().Be(expectedMessage);
     }
 
-    private void AssertCommandCalled<TCommand>(Times times) where TCommand : IRequest =>
+    private static IMock<IOptions<MonitorPresenceWorkerOptions>> MockMonitorPresenceWorkerOptions(TimeSpan interval)
+    {
+        var mock = new Mock<IOptions<MonitorPresenceWorkerOptions>>();
+        mock
+            .Setup(m => m.Value)
+            .Returns(new MonitorPresenceWorkerOptions(interval));
+        return mock;
+    }
+
+    private void AssertCommandCalledAtLeastOnce<TCommand>() where TCommand : IRequest
+        => this.AssertCommandCalled<TCommand>(Times.AtLeastOnce);
+
+    private void AssertCommandCalled<TCommand>(Func<Times> times) where TCommand : IRequest =>
         this._mediatorMock.Verify(m => m.Send(
             It.IsAny<TCommand>(),
             It.IsAny<CancellationToken>()
@@ -61,4 +82,12 @@ public class MonitoringWorkerTest : IAsyncLifetime
     ) where TCommand : IRequest => this._mediatorMock
         .Setup(m => m.Send(It.IsAny<TCommand>(), It.IsAny<CancellationToken>()))
         .ThrowsAsync(exception);
+
+    private async Task RunWorkerUntil(TimeSpan deadline)
+    {
+        var cancellationTokenSource = new CancellationTokenSource();
+        var task = this._worker.InternalExecuteAsync(cancellationTokenSource.Token);
+        cancellationTokenSource.CancelAfter(deadline);
+        await task;
+    }
 }

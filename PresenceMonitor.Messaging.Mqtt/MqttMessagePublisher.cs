@@ -10,7 +10,7 @@ public class MqttMessagePublisher : IMessagePublisher
 {
     private readonly Lazy<IMqttClient> _mqttClient;
     private readonly IOptions<MqttOptions> _mqttOptions;
-    private ILogger<MqttMessagePublisher> _logger;
+    private readonly ILogger<MqttMessagePublisher> _logger;
 
     public MqttMessagePublisher(
         Lazy<IMqttClient> mqttClient,
@@ -29,19 +29,14 @@ public class MqttMessagePublisher : IMessagePublisher
     public async Task PublishAsync(object message, CancellationToken cancellationToken)
     {
         await this.ConnectAsync(cancellationToken, this.MqttOptions.Uri);
-
-        var payload = JsonSerializer.Serialize(message);
-        await this.MqttClient.PublishAsync(new MqttApplicationMessage
-        {
-            Topic = this.MqttOptions.Topic,
-            PayloadSegment = Encoding.UTF8.GetBytes(payload)
-        }, cancellationToken);
+        await this.SendMqttMessage(this.MqttOptions.Topic, message, cancellationToken);
     }
-
+    
     private async Task ConnectAsync(CancellationToken cancellationToken, Uri uri)
     {
         if (this.MqttClient.IsConnected)
         {
+            this._logger.LogDebug("Reusing MQTT connection to {ServerUrl}", uri);
             return;
         }
 
@@ -50,6 +45,16 @@ public class MqttMessagePublisher : IMessagePublisher
             .Build();
 
         this._logger.LogDebug("Connecting to MQTT server: {ServerUrl}", uri);
-        await this.MqttClient.ConnectAsync(mqttOptions, cancellationToken);
+        _ = await this.MqttClient.ConnectAsync(mqttOptions, cancellationToken);
+    }
+
+    private async Task SendMqttMessage(string topic, object message, CancellationToken cancellationToken)
+    {
+        var payload = JsonSerializer.Serialize(message);
+        await this.MqttClient.PublishAsync(new MqttApplicationMessage
+        {
+            Topic = topic,
+            PayloadSegment = Encoding.UTF8.GetBytes(payload)
+        }, cancellationToken);
     }
 }

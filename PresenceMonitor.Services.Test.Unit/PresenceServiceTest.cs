@@ -1,6 +1,7 @@
 using System.Net;
 using Configuration;
 using Exceptions;
+using Extensions;
 using Fakes;
 using FluentAssertions;
 using Microsoft.Extensions.Options;
@@ -14,25 +15,27 @@ public class PresenceServiceTest
     public PresenceServiceTest()
     {
         this._fakeHttpRequestHandler = new FakeHttpRequestHandler(HttpStatusCode.OK, string.Empty);
-        this._presenceService = CreatePresenceService(
-            MockCreatePresenceApiOptions(),
-            this._fakeHttpRequestHandler);
+        this._presenceService = new PresenceService(
+            CreateFakeHttpClient(this._fakeHttpRequestHandler),
+            MockPresenceApiOptions().Object
+        );
     }
 
-    private static PresenceService CreatePresenceService(
-        IMock<IOptions<PresenceApiOptions>> apiOptions,
-        HttpMessageHandler httpRequestHandler
-    ) => new (
-        new HttpClient(httpRequestHandler, true),
-        apiOptions.Object
-    );
+    private static HttpClient CreateFakeHttpClient(HttpMessageHandler httpRequestHandler)
+    {
+        const string dummyUri = "http://127.0.0.1/dummy-test-base";
+        
+        var httpClient = new HttpClient(httpRequestHandler, true);
+        httpClient.BaseAddress = new Uri(dummyUri);
+        return httpClient;
+    }
 
-    private static Mock<IOptions<PresenceApiOptions>> MockCreatePresenceApiOptions()
+    private static Mock<IOptions<PresenceApiOptions>> MockPresenceApiOptions()
     {
         var mock = new Mock<IOptions<PresenceApiOptions>>();
         mock
             .Setup(o => o.Value)
-            .Returns(new PresenceApiOptions(url: "http://dummyurl.test"));
+            .Returns(new PresenceApiOptions("dummyAppId", "/dummyAppMethod"));
 
         return mock;
     }
@@ -40,7 +43,7 @@ public class PresenceServiceTest
     [Fact]
     public async Task GivenSuccessfulResponseItReturnsPresenceCount()
     {
-        var expectedCount = Convert.ToByte(Random.Shared.Next(0, 128));
+        var expectedCount = Random.Shared.NextByte();
         this._fakeHttpRequestHandler.SetExpectedResponse(HttpStatusCode.OK, expectedCount.ToString());
 
         var result = await this._presenceService.GetPresenceCountAsync();
@@ -59,7 +62,7 @@ public class PresenceServiceTest
         var exception = await Assert.ThrowsAsync<PresenceApiRequestFailedException>(() =>
             this._presenceService.GetPresenceCountAsync());
 
-        exception?.Message.Should().NotBeNullOrWhiteSpace();
-        exception!.Message.Should().Be(expectedErrorMessage);
+        exception.Message.Should().NotBeNullOrWhiteSpace();
+        exception.Message.Should().Be(expectedErrorMessage);
     }
 }

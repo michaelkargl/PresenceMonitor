@@ -12,8 +12,11 @@ services:
     image: presence-monitor-dotnet:latest
     restart: always
     environment:
+      - DOTNET_ENVIRONMENT=Development
       - MqttOptions__Url=test.mosquitto.org
-      - MqttOptions__Topic=+/time
-      - mqttOptions__Port=1883
+      - MqttOptions__Topic=presence-bot/presence
+      - MqttOptions__Port=1883
+      # access dapr environment from local dev environment
+      - PresenceApiOptions__DaprEndpoint=http://presence-api:3500
     networks:
       - presence-bot-net

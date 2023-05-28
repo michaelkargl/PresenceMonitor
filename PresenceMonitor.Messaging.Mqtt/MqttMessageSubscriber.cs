@@ -24,7 +24,7 @@ public class MqttMessageSubscriber : IMessageSubscriber
 
     private MqttOptions MqttOptions => this._mqttOptions.Value;
     private IMqttClient MqttClient => this._mqttClient.Value;
-    
+
     public async Task SubscribeAsync(
         Func<string, CancellationToken, Task> messageHandlerAsync,
         CancellationToken cancellationToken
@@ -32,37 +32,40 @@ public class MqttMessageSubscriber : IMessageSubscriber
     {
         Task HandleApplicationMessageReceivedAsync(MqttApplicationMessageReceivedEventArgs mqttMessageReceivedEventArgs)
         {
-            var message = Encoding.UTF8.GetString(mqttMessageReceivedEventArgs.ApplicationMessage.PayloadSegment);
+            var message = GetMessage(mqttMessageReceivedEventArgs);
             return messageHandlerAsync.Invoke(message, cancellationToken);
         }
-        
+
         this.MqttClient.ApplicationMessageReceivedAsync += HandleApplicationMessageReceivedAsync;
-        
-        await this.ConnectAsync(cancellationToken, this.MqttOptions.Uri);
-        await this.SubscribeAsync(cancellationToken, this.MqttOptions.Topic);
+
+        await this.ConnectAsync(this.MqttOptions.Uri, cancellationToken);
+        await this.SubscribeAsync(this.MqttOptions.Topic, cancellationToken);
     }
-    
-    private Task SubscribeAsync(CancellationToken cancellationToken, string topic)
+
+    private static string GetMessage(MqttApplicationMessageReceivedEventArgs mqttMessageReceivedEventArgs)
+        => Encoding.UTF8.GetString(mqttMessageReceivedEventArgs.ApplicationMessage.PayloadSegment);
+
+    private Task SubscribeAsync(string topic, CancellationToken cancellationToken)
     {
         var subscriptionOptions = new MqttFactory()
             .CreateSubscribeOptionsBuilder()
             .WithTopicFilter(topic)
             .Build();
-    
+
         return this.MqttClient.SubscribeAsync(subscriptionOptions, cancellationToken);
     }
-    
-    private async Task ConnectAsync(CancellationToken cancellationToken, Uri uri)
+
+    private async Task ConnectAsync(Uri uri, CancellationToken cancellationToken)
     {
         if (this.MqttClient.IsConnected)
         {
             return;
         }
-        
+
         var mqttOptions = new MqttClientOptionsBuilder()
             .WithTcpServer(uri.Host, uri.Port)
             .Build();
-    
+
         this._logger.LogDebug("Connecting to MQTT server: {ServerUrl}", uri);
         await this.MqttClient.ConnectAsync(mqttOptions, cancellationToken);
     }
