@@ -1,12 +1,9 @@
 ﻿using System.Text;
+using Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MQTTnet;
 using MQTTnet.Client;
-using PresenceMonitor.Messaging.Abstractions;
-using PresenceMonitor.Messaging.Abstractions.Configuration;
-
-namespace PresenceMonitor.Messaging.Mqtt;
 
 public class MqttMessageSubscriber : IMessageSubscriber
 {
@@ -35,7 +32,7 @@ public class MqttMessageSubscriber : IMessageSubscriber
     {
         Task HandleApplicationMessageReceivedAsync(MqttApplicationMessageReceivedEventArgs mqttMessageReceivedEventArgs)
         {
-            var message = Encoding.UTF8.GetString(mqttMessageReceivedEventArgs.ApplicationMessage.Payload);
+            var message = Encoding.UTF8.GetString(mqttMessageReceivedEventArgs.ApplicationMessage.PayloadSegment);
             return messageHandlerAsync.Invoke(message, cancellationToken);
         }
         
@@ -57,6 +54,11 @@ public class MqttMessageSubscriber : IMessageSubscriber
     
     private async Task ConnectAsync(CancellationToken cancellationToken, Uri uri)
     {
+        if (this.MqttClient.IsConnected)
+        {
+            return;
+        }
+        
         var mqttOptions = new MqttClientOptionsBuilder()
             .WithTcpServer(uri.Host, uri.Port)
             .Build();

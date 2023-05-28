@@ -2,10 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using PresenceMonitor.Messaging.Abstractions;
-using PresenceMonitor.UseCases.Abstractions;
-
-namespace PresenceMonitor.Worker;
 
 public class ProcessMessageWorker : BackgroundService
 {
