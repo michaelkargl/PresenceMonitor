@@ -2,13 +2,11 @@ using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Moq;
-using PresenceMonitor.UseCases.Abstractions;
-using PresenceMonitor.Worker;
 using Subscriber;
 
-public class WorkerTests
+public class WorkerTests : IAsyncLifetime
 {
-    private readonly IServiceProvider _serviceProvider;
+    private readonly ServiceProvider _serviceProvider;
     private readonly Mock<IMediator> _mediatorMock = new ();
 
     public WorkerTests()
@@ -18,6 +16,8 @@ public class WorkerTests
             .BuildServiceProvider();
     }
 
+    public Task InitializeAsync() => Task.CompletedTask;
+    public async Task DisposeAsync() => await this._serviceProvider.DisposeAsync();
 
     [Theory]
     [InlineData]

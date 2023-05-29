@@ -1,11 +1,14 @@
-namespace PresenceMonitor.Modules;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
+namespace Modules;
 
 public static class RootModule
 {
-    public static void Configure(IServiceCollection serviceCollection, IConfiguration configuration)
+    public static void Configure(IServiceCollection serviceCollection, IHostEnvironment environment)
     {
-        ConfigurationModule.Configure(serviceCollection, configuration);
-        MessagingModule.Configure(serviceCollection);
+        ApiModule.Configure(serviceCollection, environment);
+        MessagingModule.Configure(serviceCollection, environment);
         UseCasesModule.Configure(serviceCollection);
     }
 }

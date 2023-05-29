@@ -1,5 +1,3 @@
-using PresenceMonitor.Messaging.Abstractions;
-
 namespace Subscriber;
 
 public class PassThruMessageSubscriber : IMessageSubscriber

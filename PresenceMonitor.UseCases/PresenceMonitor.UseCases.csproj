@@ -1,18 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
+        <TargetFramework>net7.0</TargetFramework>
+        <RootNamespace />
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="MediatR" Version="10.0.1" />
-      <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+      <ProjectReference Include="..\PresenceMonitor.Messaging.Abstractions\PresenceMonitor.Messaging.Abstractions.csproj" />
+      <ProjectReference Include="..\PresenceMonitor.Services.Abstractions\PresenceMonitor.Services.Abstractions.csproj" />
+      <ProjectReference Include="..\PresenceMonitor.UseCases.Abstractions\PresenceMonitor.UseCases.Abstractions.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\PresenceMonitor.UseCases.Abstractions\PresenceMonitor.UseCases.Abstractions.csproj" />
+      <PackageReference Include="MediatR" Version="12.0.1" />
+      <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.0" />
     </ItemGroup>
 
 </Project>
