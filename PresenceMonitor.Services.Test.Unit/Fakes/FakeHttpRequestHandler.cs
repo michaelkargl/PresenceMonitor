@@ -12,7 +12,8 @@ internal class FakeHttpRequestHandler : DelegatingHandler
     }
 
     protected override Task<HttpResponseMessage> SendAsync(
-        HttpRequestMessage request, CancellationToken cancellationToken
+        HttpRequestMessage request,
+        CancellationToken cancellationToken
     ) => Task.FromResult(this._expectedResponse);
 
     internal void SetExpectedResponse(HttpStatusCode expectedStatus, string expectedContent)

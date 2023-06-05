@@ -40,7 +40,7 @@ public static class MessagingModule
     )
     {
         serviceCollection.AddSingleton<IMessagePublisher, MqttMessagePublisher>();
-        if (hostEnvironment.IsEnvironment("Offline"))
+        if (hostEnvironment.IsOffline())
         {
             serviceCollection.AddSingleton<IMessagePublisher, MqttFakeMessagePublisher>();
         }

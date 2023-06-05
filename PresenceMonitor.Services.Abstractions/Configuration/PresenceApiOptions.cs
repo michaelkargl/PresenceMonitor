@@ -6,10 +6,14 @@ public class PresenceApiOptions
     {
     }
 
-    public PresenceApiOptions(string url)
+    public PresenceApiOptions(string appId, string getPresenceCountMethod, string? daprEndpoint = null)
     {
-        this.Url = url;
+        this.AppId = appId;
+        this.GetPresenceCountMethod = getPresenceCountMethod;
+        this.DaprEndpoint = daprEndpoint;
     }
 
-    public string Url { get; set; } = null!;
+    public string? DaprEndpoint { get; set; }
+    public string AppId { get; set; } = null!;
+    public string GetPresenceCountMethod { get; set; } = null!;
 }

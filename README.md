@@ -4,14 +4,13 @@ Monitors and displays incoming presence messges.
 
 ## Minimal requirements
 
-Development and manual execution:
-
-- .NET 6.0.301
-
 Docker:
 
-- Docker version 20.10.17
-- Docker Compose version v2.6.0
+- Docker version 23.0.5
+
+For development and manual execution ony:
+
+- .NET 7.0.203+
 
 ## Architecture
 
@@ -65,17 +64,41 @@ dotnet test
 
 ## Run
 
-### Manually
+Mind that this service can only provide real use with access to its dependencies (mainly presence-api), therefore you will have to either
 
-```sh
-./run.sh
+1. run it in offline mode
+1. start up a dev infrastructure for development
+1. or integrate it into an orchestrated infratructure providing access to the necessary dependencies
+
+### Development
+
+**Offline mode**
+
+```bash
+# uses fake implementations for external dependencies
+DOTNET_ENVIRONMENT='Offline' ./run.sh
 ```
 
-### Docker
+**Local development**
 
-```sh
-docker compose up
+```bash
+# regular run requires a running dev environment
+docker compose -f ../presence-api/docker-compose.yml up &
+./run.sh # or debug with IDE
 ```
+
+**Compose**
+
+```bash
+# spin up together with local dev environment
+docker compose -f ../presence-api/docker-compose.yml -f ./docker-compose.yml up
+```
+
+> In case you are modifying the source, don't forget to rebuild your images
+
+## Demo
+
+![renders a gif that shows a demo run of the compoe method](./images/presence-monitor-mqtt-891eh6GVlP3.gif)
 
 ## License
 

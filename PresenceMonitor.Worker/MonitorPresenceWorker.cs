@@ -23,31 +23,39 @@ public class MonitorPresenceWorker : BackgroundService
         this._logger = logger;
     }
 
-    private MonitorPresenceWorkerOptions WorkerOptions => this._options.Value; 
+    private MonitorPresenceWorkerOptions WorkerOptions => this._options.Value;
 
-    internal Task ExecuteOnceAsync(IMediator mediator, CancellationToken cancellationToken)
+    protected override Task ExecuteAsync(CancellationToken stoppingToken) => this.InternalExecuteAsync(stoppingToken);
+
+    /// <summary>
+    /// Exposes worker logic for testing purposes.
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <exception cref="MonitorPresenceException"></exception>
+    internal async Task InternalExecuteAsync(CancellationToken cancellationToken)
     {
+        this._logger.LogDebug("Starting {Worker}", nameof(MonitorPresenceWorker));
         try
         {
-            this._logger.LogDebug("Triggering {Command} cycle", nameof(MonitorPresenceCommand));
-            return mediator.Send(new MonitorPresenceCommand(), cancellationToken);
+            var monitorInterval = this.WorkerOptions.Interval;
+            var timer = new PeriodicTimer(monitorInterval);
+
+            do
+            {
+                this._logger.LogDebug("Triggering {Command} cycle", nameof(MonitorPresenceCommand));
+                var mediator = this._serviceCollection.GetRequiredService<IMediator>();
+                await mediator.Send(new MonitorPresenceCommand(), cancellationToken);
+
+                this._logger.LogDebug("Awaiting next cycle in {Millseconds}ms...", monitorInterval.TotalMilliseconds);
+            } while (await timer.WaitForNextTickAsync(cancellationToken));
+        }
+        catch (OperationCanceledException)
+        {
+            throw;
         }
         catch (Exception ex)
         {
             throw new MonitorPresenceException(ex.Message, ex);
-        } 
-    }
-    
-    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-    {
-        this._logger.LogDebug("Starting {Worker}", nameof(MonitorPresenceWorker));
-        
-        var monitorInterval = this.WorkerOptions.Interval;
-        var timer = new PeriodicTimer(monitorInterval);
-        do
-        {
-            var mediator = this._serviceCollection.GetRequiredService<IMediator>();
-            await this.ExecuteOnceAsync(mediator, stoppingToken);
-        } while (await timer.WaitForNextTickAsync(cancellationToken: stoppingToken));
+        }
     }
 }

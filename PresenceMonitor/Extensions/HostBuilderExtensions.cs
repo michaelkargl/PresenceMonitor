@@ -4,7 +4,7 @@ using Modules;
 
 namespace Extensions;
 
-public static class HostBuilderExtensions
+internal static class HostBuilderExtensions
 {
     public static IHostBuilder ConfigureIocModules(
         this IHostBuilder hostBuilder
