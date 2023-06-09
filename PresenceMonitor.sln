@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresenceMonitor", "Presence
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresenceMonitor.Messaging.Abstractions", "PresenceMonitor.Messaging.Abstractions\PresenceMonitor.Messaging.Abstractions.csproj", "{68E0B641-5074-4365-A8E3-188B18CE241A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresenceMonitor.Messaging.Mqtt", "PresenceMonitor.Messaging.Mqtt\PresenceMonitor.Messaging.Mqtt.csproj", "{3A710E8B-A657-4462-8849-644E680647FD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresenceMonitor.Messaging.Dapr", "PresenceMonitor.Messaging.Dapr\PresenceMonitor.Messaging.Dapr.csproj", "{3A710E8B-A657-4462-8849-644E680647FD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresenceMonitor.Worker", "PresenceMonitor.Worker\PresenceMonitor.Worker.csproj", "{CA629F7E-1F4E-4B92-860B-3094C7892D36}"
 EndProject
@@ -21,6 +21,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresenceMonitor.Services.Test.Unit", "PresenceMonitor.Services.Test.Unit\PresenceMonitor.Services.Test.Unit.csproj", "{CCB2B42A-97FA-4FBD-825C-CA0B12D43065}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresenceMonitor.UseCases.Test.Unit", "PresenceMonitor.UseCases.Test.Unit\PresenceMonitor.UseCases.Test.Unit.csproj", "{DF586250-191E-485C-923F-E94D2AD4B04E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresenceMonitor.Utilities", "PresenceMonitor.Utilities\PresenceMonitor.Utilities.csproj", "{6EBEBB16-8685-426D-ABD4-8D5AEA010FA4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -72,5 +74,9 @@ Global
 		{DF586250-191E-485C-923F-E94D2AD4B04E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF586250-191E-485C-923F-E94D2AD4B04E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF586250-191E-485C-923F-E94D2AD4B04E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EBEBB16-8685-426D-ABD4-8D5AEA010FA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EBEBB16-8685-426D-ABD4-8D5AEA010FA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EBEBB16-8685-426D-ABD4-8D5AEA010FA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EBEBB16-8685-426D-ABD4-8D5AEA010FA4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

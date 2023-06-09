@@ -1,37 +1,39 @@
 using Configuration;
 using Dapr.Client;
 using Extensions;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 
 namespace Modules;
 
 public static class ApiModule
 {
-    public static void Configure(IServiceCollection serviceCollection, IHostEnvironment environment)
+    public static void Configure(IServiceCollection serviceCollection, IConfiguration configuration)
     {
-        serviceCollection.AddPresenceApi(environment);
+        serviceCollection.AddPresenceApi(configuration);
     }
 
     private static IServiceCollection AddPresenceApi(
-        this IServiceCollection serviceCollection, IHostEnvironment hostEnvironment
+        this IServiceCollection serviceCollection,
+        IConfiguration configuration
     )
     {
         serviceCollection
             .AddOption<PresenceApiOptions>()
-            .AddTransient(CreatePresenceService);
+            .AddTransient<RandomPresenceService>()
+            .AddTransient<PresenceService>(CreatePresenceService);
 
-
-        if (hostEnvironment.IsOffline())
-        {
-            serviceCollection.AddTransient<IPresenceService, RandomPresenceService>();
-        }
+        var apiOptions = configuration.GetRequiredOption<PresenceApiOptions>();
+        serviceCollection.AddTransient<IPresenceService, PresenceService, RandomPresenceService>(
+            apiOptions.Enabled,
+            CreatePresenceService
+        );
 
         return serviceCollection;
     }
 
-    private static IPresenceService CreatePresenceService(IServiceProvider services)
+    private static PresenceService CreatePresenceService(IServiceProvider services)
     {
         var apiOptions = services.GetRequiredService<IOptions<PresenceApiOptions>>();
         var invokeHttpClient = DaprClient.CreateInvokeHttpClient(

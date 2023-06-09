@@ -1,0 +1,67 @@
+version: "3.9"
+
+networks:
+  presence-bot-net:
+    driver: bridge
+
+volumes:
+  vol-emqx-data:
+
+services:
+  presence-monitor:
+    build:
+      context: ../../
+      dockerfile: Dockerfile
+    image: presence-monitor:latest
+    restart: always
+    ports:
+      - "3600:3500"  # Dapr HTTP API for DEV
+    environment:
+      - DOTNET_ENVIRONMENT=Production
+      # access dapr environment from local dev environment
+      - PresenceApiOptions__Enabled=true
+      - DaprPublisherOptions__Enabled=true
+      - MonitorPresenceWorkerOptions__Interval=00:00:05.0000000
+      - MonitorPresenceWorkerOptions__StartupDelay=00:01:00.0000000
+    networks:
+      - presence-bot-net
+
+  presence-monitor-dapr:
+    image: "daprio/daprd:edge"
+    container_name: presence-monitor-dapr
+    restart: always
+    volumes:
+      - '~/workspace/zube-space/PresenceMonitor/PresenceMonitor/infrastructure/dapr:/dapr:ro'
+    depends_on:
+      - presence-broker
+      - distributed-tracer
+      - presence-monitor
+    command: [
+      "./daprd",
+      "--app-id", "presence-monitor",
+      "--dapr-http-port", "3600",
+      "--dapr-grpc-port", "3610",
+      "--app-protocol", "http",
+      "--components-path", "/dapr/components",
+      "--config", "/dapr/config.yaml",
+      "--log-level", "debug",
+    ]
+    network_mode: service:presence-monitor
+  
+  presence-broker:
+    image: emqx:latest
+    ports:
+      - "18883:1883"    # MQTT
+      - "18083:18083"   # UI (default credentials: admin/public)
+      - "8083:8083"     # Websocket
+    volumes:
+      - vol-emqx-data:/opt/emqx/data
+    networks:
+      - presence-bot-net  
+  
+  distributed-tracer:
+    image: openzipkin/zipkin
+    ports:
+      - "9412:9411"
+    networks:
+      - presence-bot-net

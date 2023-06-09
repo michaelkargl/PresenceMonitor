@@ -13,6 +13,7 @@ public class PresenceApiOptions
         this.DaprEndpoint = daprEndpoint;
     }
 
+    public bool Enabled { get; set; }
     public string? DaprEndpoint { get; set; }
     public string AppId { get; set; } = null!;
     public string GetPresenceCountMethod { get; set; } = null!;

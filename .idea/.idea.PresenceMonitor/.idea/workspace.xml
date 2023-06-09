@@ -8,11 +8,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="35d3761c-cf3a-4728-bd12-22178297dd1a" name="Changes" comment="feat: generates byte using Random extension method">
+    <list default="true" id="35d3761c-cf3a-4728-bd12-22178297dd1a" name="Changes" comment="chore: cleans out unused MQTT publish/subscriber&#10;chore: renames Messaging.Mqtt =&gt; Messaging.Dapr">
+      <change afterPath="$PROJECT_DIR$/PresenceMonitor.Messaging.Abstractions/Configuration/DaprPublisherOptions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PresenceMonitor.Messaging.Dapr/DaprMessagePublisher.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PresenceMonitor.Utilities/Extensions/TaskExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PresenceMonitor.Utilities/PresenceMonitor.Utilities.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PresenceMonitor/Extensions/ConfigurationExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PresenceMonitor/infrastructure/dapr/components/pubsub.in-memory.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PresenceMonitor/infrastructure/dapr/components/pubsub.mqtt.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PresenceMonitor/infrastructure/dapr/config.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PresenceMonitor/infrastructure/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PresenceMonitor/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PresenceMonitor/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor.Messaging.Abstractions/Configuration/MqttOptions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor.Messaging.Mqtt/MqttFakeMessagePublisher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.Messaging.Dapr/FakeMessagePublisher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor.Messaging.Mqtt/MqttMessagePublisher.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor.Messaging.Mqtt/MqttMessageSubscriber.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor.Messaging.Mqtt/PresenceMonitor.Messaging.Mqtt.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.Messaging.Dapr/PresenceMonitor.Messaging.Dapr.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor.Services.Abstractions/Configuration/PresenceApiOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.Services.Abstractions/Configuration/PresenceApiOptions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor.Services/PresenceMonitor.Services.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.Services/PresenceMonitor.Services.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor.UseCases/PresenceMonitor.UseCases.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.UseCases/PresenceMonitor.UseCases.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PresenceMonitor.Worker.Test.Integration/MonitoringWorkerTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.Worker.Test.Integration/MonitoringWorkerTest.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PresenceMonitor.Worker/Configuration/MonitorPresenceWorkerOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.Worker/Configuration/MonitorPresenceWorkerOptions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PresenceMonitor.Worker/MonitorPresenceWorker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.Worker/MonitorPresenceWorker.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor.Worker/PresenceMonitor.Worker.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.Worker/PresenceMonitor.Worker.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor.sln" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor/Extensions/HostBuilderExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor/Extensions/HostBuilderExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor/Extensions/ServiceCollectionExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor/Extensions/ServiceCollectionExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor/Modules/ApiModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor/Modules/ApiModule.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor/Modules/MessagingModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor/Modules/MessagingModule.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor/Modules/RootModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor/Modules/RootModule.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor/PresenceMonitor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor/PresenceMonitor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor/appsettings.Development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,46 +55,44 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8c8a8abd97f34b28ade8f3264f65c1a84d600/69/2961bddc/MqttClientOptions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8c8a8abd97f34b28ade8f3264f65c1a84d600/98/9238ee53/MqttFactory.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3f5387c94c9d4e9117601ed49ca970c033a97530f78df44add4951d58f33794/IMqttClient.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/53fde159ba8211bfa732c66683f6d3cd7af7b9ff56a3a1dc1dbe1cee597fe/CallSiteRuntimeResolver.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/57e14dcbffd3a5d1f25646fc0961bc2de5464d6c931c6df2e897e7dfff31f/CancellationTokenSource.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7415982338a3ccbd2a7a4eb483af627bda727e356b86bb32c5d4f6998f9c/IRequestHandler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/828b9b954ad541becef9da7ed9858df2427469f55156736328a8f57bfe3b2342/Convert.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8e2e3f232b3f74cfc56d24ec307aaea234eb831ec23796f1b454eb7e8fe1/CallSiteVisitor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9115e6a464330a0df60b864905ba5e45ee26c631a1d1e463733e40b0e94/DaprClient.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/92dfdb80ccb417138be5594e924d7636319d31812e79b5d8677192c347ec8/MqttClient.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/af9d35ca731afb5287958b515b6153ba85e3d21a1f0b0d5531e5c5278fed722/BackgroundService.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bf9021a960b74107a7e141aa06bc9d8a0a53c929178c2fb95b1597be8af8dc/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d07a18f5d3711881ce852ca5c3b2bd521758d28b2272ed84243725a2a5f4fd0/DynamicServiceProviderEngine.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d8a081278aeefba3e76b6b47941a10fe76d9c11379c88f76b1938b33d8666/Exception.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d94c781a7638478787a9d171d4e7d9e393c46ada55df81b6a2b2e593192e5d/MqttClientConnectResult.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/.nuget/packages/microsoft.net.test.sdk/17.2.0/build/netcoreapp2.1/Microsoft.NET.Test.Sdk.Program.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor.Messaging.Mqtt/MqttMessagePublisher.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PresenceMonitor.Messaging.Dapr/FakeMessagePublisher.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor.Services.Abstractions/Configuration/PresenceApiOptions.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor.Services.Abstractions/Configuration/PresenceApiOptions.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor.Services.Abstractions/Exceptions/PresenceApiRequestFailedException.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor.Services.Abstractions/Exceptions/PresenceApiRequestFailedException.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PresenceMonitor.Services.Test.Unit/Fakes/FakeHttpRequestHandler.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor.Services.Test.Unit/PresenceServiceTest.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PresenceMonitor.Services.Test.Unit/PresenceServiceTest.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor.Services.Test.Unit/PresenceServiceTest.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor.Services.Test.Unit/PresenceServiceTest.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor.Services.Test.Unit/PresenceServiceTest.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor.Services.Test.Unit/PresenceServiceTest.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor.Services/PresenceService.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PresenceMonitor.Services/PresenceService.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor.Services/PresenceService.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor.Worker.Test.Integration/MonitoringWorkerTest.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor.Worker.Test.Integration/MonitoringWorkerTest.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PresenceMonitor.Worker.Test.Integration/MonitoringWorkerTest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PresenceMonitor.Worker.Test.Integration/Subscriber/PassThruMessageSubscriber.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PresenceMonitor.Worker.Test.Integration/WorkerTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor.Worker/Configuration/MonitorPresenceWorkerOptions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor.Worker/MonitorPresenceWorker.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor.Worker/MonitorPresenceWorker.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Extensions/HostBuilderExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Extensions/HostBuilderExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PresenceMonitor/Extensions/HostBuilderExtensions.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Modules/ApiModule.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Modules/ApiModule.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Extensions/ServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Modules/ApiModule.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Modules/ApiModule.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Modules/ApiModule.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PresenceMonitor/Modules/ApiModule.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Modules/ApiModule.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Modules/ApiModule.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Modules/ApiModule.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Modules/ApiModule.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Modules/MessagingModule.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Modules/MessagingModule.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Modules/RootModule.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -77,33 +103,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.36857706&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feat/implements-monitoring-background-worker&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/kami/workspace/zube-space/presence-api&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "XThreadsFramesViewSplitterKey": "0.36857706",
+    "git-widget-placeholder": "feat/adds-dapr-pubsub-support",
+    "last_opened_file_path": "/home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/infrastructure",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "advanced.settings",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;PLAIN_TEXT&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "PLAIN_TEXT"
     ],
-    &quot;rider.external.source.directories&quot;: [
-      &quot;/home/kami/.config/JetBrains/Rider2023.1/resharper-host/DecompilerCache&quot;,
-      &quot;/home/kami/.config/JetBrains/Rider2023.1/resharper-host/SourcesCache&quot;,
-      &quot;/home/kami/.local/share/Symbols/src&quot;
+    "rider.external.source.directories": [
+      "/home/kami/.config/JetBrains/Rider2023.1/resharper-host/DecompilerCache",
+      "/home/kami/.config/JetBrains/Rider2023.1/resharper-host/SourcesCache",
+      "/home/kami/.local/share/Symbols/src"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Project.PresenceMonitor Dev">
     <configuration name="PresenceMonitor Dev" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="$PROJECT_DIR$/PresenceMonitor/bin/Debug/net7.0/PresenceMonitor" />
@@ -111,7 +137,7 @@
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/PresenceMonitor/bin/Debug/net7.0" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <envs>
-        <env name="DOTNET_ENVIRONMENT" value="Offline" />
+        <env name="DOTNET_ENVIRONMENT" value="Development" />
       </envs>
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="USE_MONO" value="0" />
@@ -189,6 +215,10 @@
       <workItem from="1663312187294" duration="2157000" />
       <workItem from="1663314859405" duration="818000" />
       <workItem from="1685513594067" duration="10255000" />
+      <workItem from="1686077132394" duration="7504000" />
+      <workItem from="1686118211141" duration="4276000" />
+      <workItem from="1686291409137" duration="10282000" />
+      <workItem from="1686302521205" duration="7400000" />
     </task>
     <task id="LOCAL-00001" summary="feat: removes unnecessary Application.cs&#10;  - simplifies code and makes application cancellation easier">
       <created>1659103149601</created>
@@ -386,7 +416,133 @@
       <option name="project" value="LOCAL" />
       <updated>1685901507429</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="feat: refactors worker integration test to encompass the entire loop instead of just one run cycle">
+      <created>1685904832909</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1685904832909</updated>
+    </task>
+    <task id="LOCAL-00030" summary="feat: refactors worker integration test to encompass the entire loop instead of just one run cycle">
+      <created>1685905135047</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1685905135047</updated>
+    </task>
+    <task id="LOCAL-00031" summary="feat: code cleanup&#10;feat: adds --help output to ./run.sh">
+      <created>1685947945460</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1685947945460</updated>
+    </task>
+    <task id="LOCAL-00032" summary="feat: implements dapr publishing in monitor application">
+      <created>1686081030889</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1686081030889</updated>
+    </task>
+    <task id="LOCAL-00033" summary="feat: implements dapr publishing in monitor application">
+      <created>1686081405650</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1686081405650</updated>
+    </task>
+    <task id="LOCAL-00034" summary="feat: implements dapr publishing via HTTP requests&#10;   - unfortunately DaprClient turned out to be unreliable, so Http requests are now being issued manually.">
+      <created>1686299876123</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1686299876123</updated>
+    </task>
+    <task id="LOCAL-00035" summary="feat: implements dapr publishing via HTTP requests&#10;   - unfortunately DaprClient turned out to be unreliable, so Http requests are now being issued manually.">
+      <created>1686299880467</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1686299880467</updated>
+    </task>
+    <task id="LOCAL-00036" summary="feat: implements dapr publishing via HTTP requests&#10;   - unfortunately DaprClient turned out to be unreliable, so Http requests are now being issued manually.">
+      <created>1686299964402</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1686299964402</updated>
+    </task>
+    <task id="LOCAL-00037" summary="feat: implements dapr publishing via HTTP requests&#10;   - unfortunately DaprClient turned out to be unreliable, so Http requests are now being issued manually.">
+      <created>1686301226656</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1686301226656</updated>
+    </task>
+    <task id="LOCAL-00038" summary="feat: implements dapr publishing via HTTP requests&#10;   - unfortunately DaprClient turned out to be unreliable, so Http requests are now being issued manually.">
+      <created>1686301246068</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1686301246068</updated>
+    </task>
+    <task id="LOCAL-00039" summary="feat: enables mqtt pubsub&#10;   - in case of connection issues, try to restart your network interfaces. I'm working within a VM that sometimes drops the network card after hibernating">
+      <created>1686301392932</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1686301392932</updated>
+    </task>
+    <task id="LOCAL-00040" summary="feat: enables mqtt pubsub&#10;   - in case of connection issues, try to restart your network interfaces. I'm working within a VM that sometimes drops the network card after hibernating">
+      <created>1686301397880</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1686301397880</updated>
+    </task>
+    <task id="LOCAL-00041" summary="feat: enables mqtt pubsub&#10;   - in case of connection issues, try to restart your network interfaces. I'm working within a VM that sometimes drops the network card after hibernating">
+      <created>1686302448144</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1686302448144</updated>
+    </task>
+    <task id="LOCAL-00042" summary="feat: enables mqtt pubsub&#10;   - in case of connection issues, try to restart your network interfaces. I'm working within a VM that sometimes drops the network card after hibernating">
+      <created>1686302453133</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1686302453133</updated>
+    </task>
+    <task id="LOCAL-00043" summary="feat: introduces worker startup delay option">
+      <created>1686302824831</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1686302824831</updated>
+    </task>
+    <task id="LOCAL-00044" summary="feat: introduces worker startup delay option">
+      <created>1686303270788</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1686303270789</updated>
+    </task>
+    <task id="LOCAL-00045" summary="chore: cleans out unused MQTT publish/subscriber&#10;chore: renames Messaging.Mqtt =&gt; Messaging.Dapr">
+      <created>1686310903513</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1686310903513</updated>
+    </task>
+    <task id="LOCAL-00046" summary="chore: cleans out unused MQTT publish/subscriber&#10;chore: renames Messaging.Mqtt =&gt; Messaging.Dapr">
+      <created>1686311496890</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1686311496890</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -480,7 +636,19 @@
         </entry>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="feat/adds-dapr-pub-sub-support" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -488,11 +656,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="feat: removes unnecessary Application.cs&#10;  - simplifies code and makes application cancellation easier" />
-    <MESSAGE value="feat: initializes mqtt connection using appsettings&#10;feat: moves responsibility of providing an mqtt provider to composition root" />
-    <MESSAGE value="feat: triggers ProcessMessageCommand on message receipt instead of handling business logic in the worker" />
-    <MESSAGE value="fix: adjusts Dockerfile entrypoint to run the app directly using dotnet" />
-    <MESSAGE value="feat: adds PresenceApiService&#10;feat: configures PresenceApi service via appsettings&#10;feat: removes ConfigurationModule and moves configurations closer to its uses&#10;feat: Adds tests for http service" />
     <MESSAGE value="feat: adds PresenceApiService&#10;feat: configures PresenceApi service via appsettings&#10;feat: removes ConfigurationModule and moves configurations closer to its uses&#10;feat: Adds tests for http service&#10;chore: adjusts namespaces" />
     <MESSAGE value="feat: Adds GetPresenceCountQuery" />
     <MESSAGE value="feat: adds MonitorPresenceWorker" />
@@ -511,25 +674,13 @@
     <MESSAGE value="feat: extends PresenceApiOptions with daprEndpoint option" />
     <MESSAGE value="chore: code cleanup" />
     <MESSAGE value="feat: generates byte using Random extension method" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: generates byte using Random extension method" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/PresenceMonitor.Worker.Test.Integration/MonitoringWorkerTest.cs</url>
-          <line>46</line>
-          <properties documentPath="$PROJECT_DIR$/PresenceMonitor.Worker.Test.Integration/MonitoringWorkerTest.cs" initialLine="46" containingFunctionPresentation="Method 'ExecuteAsync_OnException_Throws'">
-            <startOffsets>
-              <option value="1680" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1846" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="feat: refactors worker integration test to encompass the entire loop instead of just one run cycle" />
+    <MESSAGE value="feat: code cleanup&#10;feat: adds --help output to ./run.sh" />
+    <MESSAGE value="feat: implements dapr publishing in monitor application" />
+    <MESSAGE value="feat: implements dapr publishing via HTTP requests&#10;   - unfortunately DaprClient turned out to be unreliable, so Http requests are now being issued manually." />
+    <MESSAGE value="feat: enables mqtt pubsub&#10;   - in case of connection issues, try to restart your network interfaces. I'm working within a VM that sometimes drops the network card after hibernating" />
+    <MESSAGE value="feat: introduces worker startup delay option" />
+    <MESSAGE value="chore: cleans out unused MQTT publish/subscriber&#10;chore: renames Messaging.Mqtt =&gt; Messaging.Dapr" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: cleans out unused MQTT publish/subscriber&#10;chore: renames Messaging.Mqtt =&gt; Messaging.Dapr" />
   </component>
 </project>

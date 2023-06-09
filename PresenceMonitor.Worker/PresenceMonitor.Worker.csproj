@@ -20,6 +20,6 @@
     <ItemGroup>
         <ProjectReference Include="..\PresenceMonitor.Messaging.Abstractions\PresenceMonitor.Messaging.Abstractions.csproj" />
         <ProjectReference Include="..\PresenceMonitor.UseCases.Abstractions\PresenceMonitor.UseCases.Abstractions.csproj" />
+        <ProjectReference Include="..\PresenceMonitor.Utilities\PresenceMonitor.Utilities.csproj" />
     </ItemGroup>
-    
 </Project>
