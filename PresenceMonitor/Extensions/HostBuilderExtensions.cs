@@ -13,5 +13,5 @@ internal static class HostBuilderExtensions
     private static void ConfigureRootModule(
         HostBuilderContext context,
         IServiceCollection collection
-    ) => RootModule.Configure(collection, context.HostingEnvironment);
+    ) => RootModule.Configure(collection, context.HostingEnvironment, context.Configuration);
 }

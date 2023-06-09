@@ -6,11 +6,17 @@ public class MonitorPresenceWorkerOptions
     {
     }
 
-    public MonitorPresenceWorkerOptions(TimeSpan interval)
+    public MonitorPresenceWorkerOptions(
+        TimeSpan interval,
+        TimeSpan startupDelay
+    )
     {
         this.Interval = interval;
+        this.StartupDelay = startupDelay;
     }
 
+    public TimeSpan StartupDelay { get; set; }
+    
     /// <summary>
     /// HH:mm:ss.fffffff
     /// </summary>

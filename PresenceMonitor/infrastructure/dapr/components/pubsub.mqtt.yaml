@@ -1,0 +1,32 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: pubsub-mqtt
+spec:
+  type: pubsub.mqtt3
+  version: v1
+  initTimeout: "30s"  # give the broker enough time to initialize
+  metadata:
+    - name: url
+      value: "mqtt://presence-broker:1883"
+      # value: "mqtt://test.mosquitto.org:1883"
+    # Optional
+    - name: retain
+      value: "true"
+    - name: cleanSession
+      value: "true"
+    - name: qos
+      value: "0" # Mind the notes below
+
+# Note on QOS:
+#   At most once (0): best-effort delivery without guarantees / fire-and-forget
+#                     No receipt acknowledgements are being exchanged and
+#                     Message is not stored and re-transmitted
+#                     Enables message broadcasting since the server does not care about its recipients at this point  
+#   At least once (1): Sender stores message until the client sends a PUBACK.
+#                      Due to retry-logic, messages can be delivered more than once
+#                      No broadcasting possible anymore (this includes mosquitto_sub processes for troubleshooting)
+#   Exactly once (2): Layer on-top of QOS1 that ensures one-time-delivery only.
+#                     Very slow due to the broker having to send 2 messages (four-part handshake)
+#
+# https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels/

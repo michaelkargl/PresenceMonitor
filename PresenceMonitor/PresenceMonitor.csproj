@@ -10,18 +10,23 @@
       <PackageReference Include="MediatR" Version="12.0.1" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
       <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
+      <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
     </ItemGroup>
 
     <ItemGroup>
       <None Update="appsettings.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+      <None Update="appsettings.Development.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\PresenceMonitor.Messaging.Mqtt\PresenceMonitor.Messaging.Mqtt.csproj" />
+      <ProjectReference Include="..\PresenceMonitor.Messaging.Dapr\PresenceMonitor.Messaging.Dapr.csproj" />
       <ProjectReference Include="..\PresenceMonitor.Services\PresenceMonitor.Services.csproj" />
       <ProjectReference Include="..\PresenceMonitor.UseCases\PresenceMonitor.UseCases.csproj" />
+      <ProjectReference Include="..\PresenceMonitor.Utilities\PresenceMonitor.Utilities.csproj" />
       <ProjectReference Include="..\PresenceMonitor.Worker\PresenceMonitor.Worker.csproj" />
     </ItemGroup>
 

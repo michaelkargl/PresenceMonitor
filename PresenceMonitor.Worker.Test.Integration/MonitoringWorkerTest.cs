@@ -64,7 +64,7 @@ public class MonitoringWorkerTest : IAsyncLifetime
         var mock = new Mock<IOptions<MonitorPresenceWorkerOptions>>();
         mock
             .Setup(m => m.Value)
-            .Returns(new MonitorPresenceWorkerOptions(interval));
+            .Returns(new MonitorPresenceWorkerOptions(interval, TimeSpan.Zero));
         return mock;
     }
 

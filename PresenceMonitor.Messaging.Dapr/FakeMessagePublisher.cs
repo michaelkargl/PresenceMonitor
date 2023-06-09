@@ -1,11 +1,11 @@
 using System.Text.Json;
 using Microsoft.Extensions.Logging;
 
-public class MqttFakeMessagePublisher : IMessagePublisher
+public class FakeMessagePublisher : IMessagePublisher
 {
-    private readonly ILogger<MqttFakeMessagePublisher> _logger;
+    private readonly ILogger<FakeMessagePublisher> _logger;
 
-    public MqttFakeMessagePublisher(ILogger<MqttFakeMessagePublisher> logger)
+    public FakeMessagePublisher(ILogger<FakeMessagePublisher> logger)
     {
         this._logger = logger;
     }

@@ -11,4 +11,22 @@ internal static class ServiceCollectionExtensions
             .BindConfiguration(typeof(T).Name);
         return serviceCollection;
     }
+
+    public static IServiceCollection AddTransient<TInterface, TServiceEnabled, TServiceFallback>(
+        this IServiceCollection serviceCollection,
+        bool enabled,
+        Func<IServiceProvider, TServiceEnabled>? enabledServiceBuilder = null
+    ) where TInterface : class
+        where TServiceEnabled : class, TInterface
+        where TServiceFallback : class, TInterface
+    {
+        if (!enabled)
+        {
+            return serviceCollection.AddTransient<TInterface, TServiceFallback>();
+        }
+
+        return enabledServiceBuilder is not null
+            ? serviceCollection.AddTransient<TInterface, TServiceEnabled>(enabledServiceBuilder)
+            : serviceCollection.AddTransient<TInterface, TServiceEnabled>();
+    }
 }

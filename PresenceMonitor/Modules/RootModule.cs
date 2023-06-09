@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -5,10 +6,17 @@ namespace Modules;
 
 public static class RootModule
 {
-    public static void Configure(IServiceCollection serviceCollection, IHostEnvironment environment)
+    public static void Configure(
+        IServiceCollection serviceCollection,
+        IHostEnvironment environment,
+        IConfiguration configuration
+    )
     {
-        ApiModule.Configure(serviceCollection, environment);
-        MessagingModule.Configure(serviceCollection, environment);
+        serviceCollection
+            .AddHttpClient();
+        
+        ApiModule.Configure(serviceCollection, configuration);
+        MessagingModule.Configure(serviceCollection, environment, configuration);
         UseCasesModule.Configure(serviceCollection);
     }
 }
