@@ -16,13 +16,14 @@ services:
     restart: always
     ports:
       - "3600:3500"  # Dapr HTTP API for DEV
+      - "3610:50001"  # Dapr GRPC API for DEV
     environment:
       - DOTNET_ENVIRONMENT=Production
       # access dapr environment from local dev environment
       - PresenceApiOptions__Enabled=true
       - DaprPublisherOptions__Enabled=true
       - MonitorPresenceWorkerOptions__Interval=00:00:05.0000000
-      - MonitorPresenceWorkerOptions__StartupDelay=00:01:00.0000000
+      - MonitorPresenceWorkerOptions__StartupDelay=00:00:45.0000000
     networks:
       - presence-bot-net
 
@@ -39,8 +40,8 @@ services:
     command: [
       "./daprd",
       "--app-id", "presence-monitor",
-      "--dapr-http-port", "3600",
-      "--dapr-grpc-port", "3610",
+      "--dapr-http-port", "3500",
+      "--dapr-grpc-port", "50001",
       "--app-protocol", "http",
       "--components-path", "/dapr/components",
       "--config", "/dapr/config.yaml",

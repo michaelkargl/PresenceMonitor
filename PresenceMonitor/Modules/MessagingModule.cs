@@ -1,8 +1,10 @@
 using Configuration;
+using Dapr.Client;
 using Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 
 namespace Modules;
 
@@ -21,12 +23,21 @@ public static class MessagingModule
         DaprPublisherOptions? daprPublisherOptions
     )
     {
-        serviceCollection.AddHttpClient<DaprMessagePublisher>();
         return serviceCollection
             .AddOption<DaprPublisherOptions>()
             .AddTransient<IMessagePublisher, DaprMessagePublisher, FakeMessagePublisher>(
-                daprPublisherOptions!.Enabled
+                daprPublisherOptions!.Enabled,
+                BuildDaprMessagePublisher
             );
+    }
+
+    private static DaprMessagePublisher BuildDaprMessagePublisher(IServiceProvider serviceProvider)
+    {
+        var daprPublisherOptions = serviceProvider.GetRequiredService<IOptions<DaprPublisherOptions>>();
+        var daprClient = new DaprClientBuilder()
+            .UseGrpcEndpoint(daprPublisherOptions.Value.DaprEndpoint)
+            .Build();
+        return new DaprMessagePublisher(daprClient, daprPublisherOptions);
     }
 
     private static IServiceCollection AddMonitorPresenceWorker(this IServiceCollection serviceCollection)
