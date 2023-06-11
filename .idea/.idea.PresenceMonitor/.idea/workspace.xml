@@ -9,7 +9,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="35d3761c-cf3a-4728-bd12-22178297dd1a" name="Changes" comment="feat: publishes events using DaprClient&#10;&#10;&#10;The DaprClient uses GRPC for its communication =&gt; https://github.com/dapr/dotnet-sdk/issues/809&#10;So we have to configure Dapr to use the GRPC port when publishing the message&#10;&#10;closes #15&#10;closes #16&#10;&#10;- [#15](https://gitlab.com/ohsnaparts/osasoftworks/zube/presence-monitor/-/issues/15)&#10;- [#16](https://gitlab.com/ohsnaparts/osasoftworks/zube/presence-monitor/-/issues/16)">
-      <change beforePath="$PROJECT_DIR$/PresenceMonitor/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PresenceMonitor/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PresenceMonitor/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +83,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "XThreadsFramesViewSplitterKey": "0.36857706",
-    "git-widget-placeholder": "feat/15-publish-events-using-dapr-client",
+    "git-widget-placeholder": "docs/documents-architecture-and-tech-stack",
     "last_opened_file_path": "/home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/infrastructure",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
