@@ -33,7 +33,7 @@ public static class ApiModule
         return serviceCollection;
     }
 
-    private static PresenceService CreatePresenceService(IServiceProvider services)
+    private static PresenceService CreatePresenceService(System.IServiceProvider services)
     {
         var apiOptions = services.GetRequiredService<IOptions<PresenceApiOptions>>();
         var invokeHttpClient = DaprClient.CreateInvokeHttpClient(

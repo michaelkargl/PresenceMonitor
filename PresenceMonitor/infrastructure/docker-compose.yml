@@ -20,7 +20,7 @@ services:
     environment:
       - DOTNET_ENVIRONMENT=Production
       # access dapr environment from local dev environment
-      - PresenceApiOptions__Enabled=true
+      - PresenceApiOptions__Enabled=false
       - DaprPublisherOptions__Enabled=true
       - MonitorPresenceWorkerOptions__Interval=00:00:05.0000000
       - MonitorPresenceWorkerOptions__StartupDelay=00:00:45.0000000
@@ -58,7 +58,7 @@ services:
     volumes:
       - vol-emqx-data:/opt/emqx/data
     networks:
-      - presence-bot-net  
+      - presence-bot-net
   
   distributed-tracer:
     image: openzipkin/zipkin

@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresenceMonitor.UseCases.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresenceMonitor.Utilities", "PresenceMonitor.Utilities\PresenceMonitor.Utilities.csproj", "{6EBEBB16-8685-426D-ABD4-8D5AEA010FA4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresenceMonitor.Test", "PresenceMonitor.Test\PresenceMonitor.Test.csproj", "{06906DB3-B239-4EC2-ABD3-56333ACAE558}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -78,5 +80,9 @@ Global
 		{6EBEBB16-8685-426D-ABD4-8D5AEA010FA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EBEBB16-8685-426D-ABD4-8D5AEA010FA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EBEBB16-8685-426D-ABD4-8D5AEA010FA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06906DB3-B239-4EC2-ABD3-56333ACAE558}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06906DB3-B239-4EC2-ABD3-56333ACAE558}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06906DB3-B239-4EC2-ABD3-56333ACAE558}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06906DB3-B239-4EC2-ABD3-56333ACAE558}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

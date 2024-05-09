@@ -1,16 +1,19 @@
+using Configuration;
 using Moq;
 
 public class MonitorPresenceCommandHandlerTest
 {
-    private readonly Mock<IPresenceService> _presenceServiceMock = new ();
-    private readonly Mock<IMessagePublisher> _messagePublisherMock = new ();
+    private readonly Mock<IPresenceService> _presenceServiceMock = new();
+    private readonly Mock<IMessagePublisher<byte, RawDaprPublisherOptions>> _rawMessagePublisherMock = new();
+    private readonly Mock<IMessagePublisher<PresenceMessageV1, PresenceMessageV1DaprPublisherOptions>> _presenceMessagePublisherMock = new();
     private readonly MonitorPresenceCommandHandler _commandHandler;
 
     public MonitorPresenceCommandHandlerTest()
     {
         this._commandHandler = new MonitorPresenceCommandHandler(
             this._presenceServiceMock.Object,
-            this._messagePublisherMock.Object);
+            this._rawMessagePublisherMock.Object,
+            this._presenceMessagePublisherMock.Object);
     }
 
 
@@ -31,7 +34,7 @@ public class MonitorPresenceCommandHandlerTest
         .ReturnsAsync(expectedCount);
 
     private void VerifyPublishMessageAsyncCalled(Times times, byte expectedMessage) =>
-        this._messagePublisherMock.Verify(publisher => publisher.PublishAsync(
+        this._rawMessagePublisherMock.Verify(publisher => publisher.PublishAsync(
                 expectedMessage,
                 It.IsAny<CancellationToken>()
             ),
