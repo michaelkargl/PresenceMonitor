@@ -1,16 +1,19 @@
 using System.Text.Json;
+using Configuration;
 using Microsoft.Extensions.Logging;
 
-public class FakeMessagePublisher : IMessagePublisher
+public class FakeMessagePublisher<TMessage, TPublisherOptions> : IMessagePublisher<TMessage, TPublisherOptions> 
+    where TPublisherOptions : AbstractDaprPublisherOptions
+    where TMessage : notnull
 {
-    private readonly ILogger<FakeMessagePublisher> _logger;
+    private readonly ILogger<FakeMessagePublisher<TMessage, TPublisherOptions>> _logger;
 
-    public FakeMessagePublisher(ILogger<FakeMessagePublisher> logger)
+    public FakeMessagePublisher(ILogger<FakeMessagePublisher<TMessage, TPublisherOptions>> logger)
     {
         this._logger = logger;
     }
 
-    public Task PublishAsync(object message, CancellationToken cancellationToken)
+    public Task PublishAsync(TMessage message, CancellationToken cancellationToken)
     {
         var payload = JsonSerializer.Serialize(message);
         this._logger.LogDebug("FAKE publishing message {Message}", payload);

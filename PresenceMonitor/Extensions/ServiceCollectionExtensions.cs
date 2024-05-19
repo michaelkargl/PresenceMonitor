@@ -15,7 +15,7 @@ internal static class ServiceCollectionExtensions
     public static IServiceCollection AddTransient<TInterface, TServiceEnabled, TServiceFallback>(
         this IServiceCollection serviceCollection,
         bool enabled,
-        Func<IServiceProvider, TServiceEnabled>? enabledServiceBuilder = null
+        Func<System.IServiceProvider, TServiceEnabled>? enabledServiceBuilder = null
     ) where TInterface : class
         where TServiceEnabled : class, TInterface
         where TServiceFallback : class, TInterface

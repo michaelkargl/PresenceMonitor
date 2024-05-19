@@ -1,9 +1,8 @@
 namespace Configuration;
 
-public class DaprPublisherOptions
+public abstract class AbstractDaprPublisherOptions
 {
     public bool Enabled { get; set; }
-    public string? DaprEndpoint { get; set; }
     public string PubSubName { get; set; } = null!;
     public string Topic { get; set; } = null!;
 }

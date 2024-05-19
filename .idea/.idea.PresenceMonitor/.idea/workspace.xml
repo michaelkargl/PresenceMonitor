@@ -8,9 +8,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="35d3761c-cf3a-4728-bd12-22178297dd1a" name="Changes" comment="feat: publishes events using DaprClient&#10;&#10;&#10;The DaprClient uses GRPC for its communication =&gt; https://github.com/dapr/dotnet-sdk/issues/809&#10;So we have to configure Dapr to use the GRPC port when publishing the message&#10;&#10;closes #15&#10;closes #16&#10;&#10;- [#15](https://gitlab.com/ohsnaparts/osasoftworks/zube/presence-monitor/-/issues/15)&#10;- [#16](https://gitlab.com/ohsnaparts/osasoftworks/zube/presence-monitor/-/issues/16)">
+    <list default="true" id="35d3761c-cf3a-4728-bd12-22178297dd1a" name="Changes" comment="feat: splits DaprPublisherOptions into two concrete settings">
+      <change afterPath="$PROJECT_DIR$/PresenceMonitor.Messaging.Abstractions/Configuration/DaprClientOptions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PresenceMonitor.Test/ContainerFixture.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PresenceMonitor.Test/appsettings.test.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PresenceMonitor/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PresenceMonitor/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor.Messaging.Abstractions/Configuration/BaseDaprPublisherOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.Messaging.Abstractions/Configuration/AbstractDaprPublisherOptions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor.Messaging.Abstractions/Configuration/PresenceMessageV1DaprPublisherOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.Messaging.Abstractions/Configuration/PresenceMessageV1DaprPublisherOptions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor.Messaging.Abstractions/Configuration/RawDaprPublisherOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.Messaging.Abstractions/Configuration/RawDaprPublisherOptions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor.Messaging.Abstractions/IMessagePublisher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.Messaging.Abstractions/IMessagePublisher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor.Messaging.Dapr/DaprMessagePublisher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.Messaging.Dapr/DaprMessagePublisher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor.Messaging.Dapr/FakeMessagePublisher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.Messaging.Dapr/FakeMessagePublisher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor.UseCases.Test.Unit/MonitorPresenceCommandHandlerTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.UseCases.Test.Unit/MonitorPresenceCommandHandlerTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor.UseCases/MonitorPresenceCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.UseCases/MonitorPresenceCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor.sln" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor/Modules/MessagingModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor/Modules/MessagingModule.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PresenceMonitor/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/PresenceMonitor/appsettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,89 +34,66 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/72fe8e4bbb8049bc81769ed531e7d8b447a00/fa/dc694eab/MqttFactory.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8c8a8abd97f34b28ade8f3264f65c1a84d600/69/2961bddc/MqttClientOptions.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8c8a8abd97f34b28ade8f3264f65c1a84d600/98/9238ee53/MqttFactory.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3f5387c94c9d4e9117601ed49ca970c033a97530f78df44add4951d58f33794/IMqttClient.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/53fde159ba8211bfa732c66683f6d3cd7af7b9ff56a3a1dc1dbe1cee597fe/CallSiteRuntimeResolver.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/57e14dcbffd3a5d1f25646fc0961bc2de5464d6c931c6df2e897e7dfff31f/CancellationTokenSource.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7415982338a3ccbd2a7a4eb483af627bda727e356b86bb32c5d4f6998f9c/IRequestHandler.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/828b9b954ad541becef9da7ed9858df2427469f55156736328a8f57bfe3b2342/Convert.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8e2e3f232b3f74cfc56d24ec307aaea234eb831ec23796f1b454eb7e8fe1/CallSiteVisitor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/308c7dd79c6e45d6a79a92ba50fc748daa88/55/3a1d7b30/ServiceCollectionServiceExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ec510b0594644da5be146ac047aef4fe1c00/ab/50b5fe35/IServiceProvider.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7596ee1a1a92ffb243283ec32b18ea298ce7ad9514a248d3cf8eda8a763/DaprClientBuilder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9115e6a464330a0df60b864905ba5e45ee26c631a1d1e463733e40b0e94/DaprClient.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/92dfdb80ccb417138be5594e924d7636319d31812e79b5d8677192c347ec8/MqttClient.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/af9d35ca731afb5287958b515b6153ba85e3d21a1f0b0d5531e5c5278fed722/BackgroundService.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bf9021a960b74107a7e141aa06bc9d8a0a53c929178c2fb95b1597be8af8dc/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d07a18f5d3711881ce852ca5c3b2bd521758d28b2272ed84243725a2a5f4fd0/DynamicServiceProviderEngine.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d8a081278aeefba3e76b6b47941a10fe76d9c11379c88f76b1938b33d8666/Exception.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d94c781a7638478787a9d171d4e7d9e393c46ada55df81b6a2b2e593192e5d/MqttClientConnectResult.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/.nuget/packages/microsoft.net.test.sdk/17.2.0/build/netcoreapp2.1/Microsoft.NET.Test.Sdk.Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/985b8e6debfa6a2c8337e88c20a81b9f1b24c6411fbdebcd1e0c98a85ac8fda/IClassFixture.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor.Messaging.Dapr/DaprMessagePublisher.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PresenceMonitor.Messaging.Dapr/FakeMessagePublisher.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor.Services.Abstractions/Configuration/PresenceApiOptions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PresenceMonitor.Services.Test.Unit/Fakes/FakeHttpRequestHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PresenceMonitor.Services.Test.Unit/PresenceServiceTest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PresenceMonitor.Services/PresenceService.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor.Worker.Test.Integration/MonitoringWorkerTest.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PresenceMonitor.Worker.Test.Integration/MonitoringWorkerTest.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor.Worker.Test.Integration/MonitoringWorkerTest.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PresenceMonitor.Worker.Test.Integration/Subscriber/PassThruMessageSubscriber.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PresenceMonitor.Worker.Test.Integration/WorkerTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor.Worker/Configuration/MonitorPresenceWorkerOptions.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor.Worker/MonitorPresenceWorker.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor.Worker/MonitorPresenceWorker.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor.Worker/MonitorPresenceWorker.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PresenceMonitor/Extensions/HostBuilderExtensions.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Extensions/HostBuilderExtensions.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Extensions/HostBuilderExtensions.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Extensions/ServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Modules/ApiModule.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PresenceMonitor/Modules/ApiModule.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Modules/ApiModule.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Modules/ApiModule.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Modules/ApiModule.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Modules/MessagingModule.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Modules/MessagingModule.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Modules/MessagingModule.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Modules/MessagingModule.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/Modules/RootModule.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2CaWUrxBL4B47SwnZG11oTcWyn1" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "XThreadsFramesViewSplitterKey": "0.36857706",
-    "git-widget-placeholder": "docs/documents-architecture-and-tech-stack",
-    "last_opened_file_path": "/home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/infrastructure",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "advanced.settings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Project.PresenceMonitor Dev.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.36857706&quot;,
+    &quot;f8bcb626-efc5-480f-8b70-f0c1084937e1.executor&quot;: &quot;Debug&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;17-publish-presencemessagev1-instead-of-byte&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/kami/workspace/zube-space/PresenceMonitor/PresenceMonitor/infrastructure&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "PLAIN_TEXT"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;PLAIN_TEXT&quot;
     ],
-    "rider.external.source.directories": [
-      "/home/kami/.config/JetBrains/Rider2023.1/resharper-host/DecompilerCache",
-      "/home/kami/.config/JetBrains/Rider2023.1/resharper-host/SourcesCache",
-      "/home/kami/.local/share/Symbols/src"
+    &quot;rider.external.source.directories&quot;: [
+      &quot;/home/kami/.config/JetBrains/Rider2023.3/resharper-host/DecompilerCache&quot;,
+      &quot;/home/kami/.config/JetBrains/Rider2023.3/resharper-host/SourcesCache&quot;,
+      &quot;/home/kami/.local/share/Symbols/src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Project.PresenceMonitor Dev">
     <configuration name="PresenceMonitor Dev" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="$PROJECT_DIR$/PresenceMonitor/bin/Debug/net7.0/PresenceMonitor" />
@@ -112,8 +102,8 @@
       <option name="PASS_PARENT_ENVS" value="1" />
       <envs>
         <env name="DOTNET_ENVIRONMENT" value="Development" />
-        <env name="DAPR_HTTP_PORT" value="3600" />
         <env name="DAPR_GRPC_PORT" value="3610" />
+        <env name="DAPR_HTTP_PORT" value="3600" />
       </envs>
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="USE_MONO" value="0" />
@@ -195,6 +185,13 @@
       <workItem from="1686118211141" duration="4276000" />
       <workItem from="1686291409137" duration="10282000" />
       <workItem from="1686302521205" duration="7400000" />
+      <workItem from="1687426928407" duration="8909000" />
+      <workItem from="1715244424190" duration="998000" />
+      <workItem from="1715245570092" duration="436000" />
+      <workItem from="1715670243152" duration="3379000" />
+      <workItem from="1715698624498" duration="1683000" />
+      <workItem from="1715751712607" duration="461000" />
+      <workItem from="1715841121541" duration="27566000" />
     </task>
     <task id="LOCAL-00001" summary="feat: removes unnecessary Application.cs&#10;  - simplifies code and makes application cancellation easier">
       <created>1659103149601</created>
@@ -525,7 +522,23 @@
       <option name="project" value="LOCAL" />
       <updated>1686384841841</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00050" summary="feat: splits DaprPublisherOptions into two concrete settings">
+      <option name="closed" value="true" />
+      <created>1716016421196</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1716016421198</updated>
+    </task>
+    <task id="LOCAL-00051" summary="feat: splits DaprPublisherOptions into two concrete settings">
+      <option name="closed" value="true" />
+      <created>1716016475976</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1716016475977</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -639,8 +652,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="feat: Adds GetPresenceCountQuery" />
-    <MESSAGE value="feat: adds MonitorPresenceWorker" />
     <MESSAGE value="feat: implements MonitorPresenceCommand" />
     <MESSAGE value="chore: updates dependencies&#10;fix: memory leak in tests&#10;feat: provide separate mqtt connections for different service workers =&gt; pub / sub in one application" />
     <MESSAGE value="feat: makes monitoring interval configurable" />
@@ -664,7 +675,9 @@
     <MESSAGE value="feat: introduces worker startup delay option" />
     <MESSAGE value="chore: cleans out unused MQTT publish/subscriber&#10;chore: renames Messaging.Mqtt =&gt; Messaging.Dapr" />
     <MESSAGE value="feat: publishes events using DaprClient&#10;&#10;&#10;The DaprClient uses GRPC for its communication =&gt; https://github.com/dapr/dotnet-sdk/issues/809&#10;So we have to configure Dapr to use the GRPC port when publishing the message&#10;&#10;closes #15&#10;closes #16&#10;&#10;- [#15](https://gitlab.com/ohsnaparts/osasoftworks/zube/presence-monitor/-/issues/15)&#10;- [#16](https://gitlab.com/ohsnaparts/osasoftworks/zube/presence-monitor/-/issues/16)" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: publishes events using DaprClient&#10;&#10;&#10;The DaprClient uses GRPC for its communication =&gt; https://github.com/dapr/dotnet-sdk/issues/809&#10;So we have to configure Dapr to use the GRPC port when publishing the message&#10;&#10;closes #15&#10;closes #16&#10;&#10;- [#15](https://gitlab.com/ohsnaparts/osasoftworks/zube/presence-monitor/-/issues/15)&#10;- [#16](https://gitlab.com/ohsnaparts/osasoftworks/zube/presence-monitor/-/issues/16)" />
+    <MESSAGE value="feat: adds publishing of PresenceMessageV1" />
+    <MESSAGE value="feat: splits DaprPublisherOptions into two concrete settings" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: splits DaprPublisherOptions into two concrete settings" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
@@ -673,5 +686,9 @@
         <PinnedItemInfo parentTag="Type#Dapr.Client.DaprClientGrpc" memberName="client" />
       </pinned-members>
     </pin-to-top-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
